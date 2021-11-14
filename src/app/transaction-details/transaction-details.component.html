@@ -1,0 +1,47 @@
+<!--<div class="mat-elevation-z8">-->
+<!--  <div class="flex-center">-->
+<!--    <h1>ტრანზაქციის დეტალები</h1>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="detailsDataSource.data.length > 0" class="transactions-table">-->
+<!--    <table mat-table class="mat-elevation-z8" [dataSource]="detailsDataSource" >-->
+
+<!--      <ng-container matColumnDef="userId">-->
+<!--        <th mat-header-cell *matHeaderCellDef>მომხმარებლის ID</th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.id}} </td>-->
+<!--      </ng-container>-->
+
+<!--      <ng-container matColumnDef="status">-->
+<!--        <th mat-header-cell *matHeaderCellDef>ტრანზაქციის სტატუსი</th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.amount}}</td>-->
+<!--      </ng-container>-->
+
+<!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+
+<!--      <tr mat-row *matNoDataRow>-->
+<!--        <td mat-cell colspan="4">ჩანაწერი არ მოიძებნა</td>-->
+<!--      </tr>-->
+<!--    </table>-->
+
+<!--    <div class="flex-center">-->
+<!--      <button mat-flat-button color='primary' (click)="closeDialog()">დახურვა</button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<div>
+  <h2 mat-dialog-title style="text-align: center">ტრანზაქციის დეტალები</h2>
+  <mat-dialog-content>
+    <div>მომხმარებლის ID : {{transactionData.userId}}</div>
+    <div>ტრანზაქციის სტატუსი : {{transactionData.status}}</div>
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions class="float-right">
+    <button class="mat-raised-button"
+            style="margin-right: auto; margin-left: auto; display: block;"
+            (click)="closeDialog()">Close</button>
+  </mat-dialog-actions>
+</div>
