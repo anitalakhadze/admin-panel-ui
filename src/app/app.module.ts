@@ -14,6 +14,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TransactionDetailsComponent } from './transaction-details/transaction-details.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { MatButtonLoadingDirective } from './utils/mat-button-loading.directive';
+import {MatTableFilterModule} from "mat-table-filter";
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CancelTransactionComponent } from './cancel-transaction/cancel-transaction.component';
 
 @NgModule({
   declarations: [
@@ -23,18 +27,22 @@ import {MatDialogModule} from "@angular/material/dialog";
     DashboardComponent,
     TransactionsComponent,
     TransactionDetailsComponent,
+    MatButtonLoadingDirective,
+    ChangePasswordComponent,
+    CancelTransactionComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AngularMaterialModule,
-        FlexLayoutModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatDialogModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatTableFilterModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

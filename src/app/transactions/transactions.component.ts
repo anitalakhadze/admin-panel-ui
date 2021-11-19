@@ -7,8 +7,8 @@ import {ExcelService} from "../utils/excel.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TransactionDetailsComponent} from "../transaction-details/transaction-details.component";
 import {MatSort} from "@angular/material/sort";
-import {filter} from "rxjs/operators";
 import {SnackbarService} from "../utils/snackbar.service";
+import {CancelTransactionComponent} from "../cancel-transaction/cancel-transaction.component";
 
 @Component({
   selector: 'app-transactions',
@@ -18,10 +18,11 @@ import {SnackbarService} from "../utils/snackbar.service";
 export class TransactionsComponent implements OnInit {
 
   transactionsDataSource = new MatTableDataSource<Transaction>([]);
-  displayedColumns: string[] = ['id', 'amount', 'commission', 'invoiceData', 'dateCreated', 'details'];
+  displayedColumns: string[] = ['id', 'amount', 'commission', 'invoiceData', 'dateCreated', 'details', 'cancel'];
   fileName = 'ტრანზაქციები';
   transactionsList?: Transaction[];
   public exportButtonLoading: boolean = false;
+  public cancelButtonLoading: boolean = false;
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.transactionsDataSource.sort = sort;
@@ -62,12 +63,20 @@ export class TransactionsComponent implements OnInit {
     this.excelService.exportToExcel(this.fileName, this.transactionsList);
     this.exportButtonLoading = false;
   }
+
   showDetails(data: any) {
     return this.dialog.open(TransactionDetailsComponent, {
-      width: '300px',
+      width: '350',
       data: data,
       disableClose: true,
     });
   }
 
+  cancelTransaction(id: string) {
+    return this.dialog.open(CancelTransactionComponent, {
+      width: '350',
+      data: id,
+      disableClose: true,
+    });
+  }
 }

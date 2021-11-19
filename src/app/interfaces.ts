@@ -5,7 +5,8 @@ export interface Tokens {
 
 export interface TransactionDetails {
   userId: number;
-  status: number;
+  paymentSource: string;
+  status: string;
 }
 
 export interface Transaction {

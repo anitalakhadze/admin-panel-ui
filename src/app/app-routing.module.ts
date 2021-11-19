@@ -4,11 +4,13 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TransactionsComponent} from "./transactions/transactions.component";
+import {ChangePasswordComponent} from "./change-password/change-password.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'password', component: ChangePasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/transactions', component: TransactionsComponent },
 ];

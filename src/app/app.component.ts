@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {AuthService} from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,24 @@ export class AppComponent {
   title = 'admin-panel-ui';
 
   constructor(
-    public router: Router
+    public authService: AuthService
   ) {
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  hasAdminRights(): boolean {
+    if (this.authService.isUserLoggedIn()) {
+      if (this.authService.hasRole('ADMIN')) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+    // return this.authService.isUserLoggedIn() && this.authService.hasRole('ADMIN');
   }
 }

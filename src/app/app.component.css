@@ -1,3 +1,13 @@
 .mat-button {
   color: white;
+  font-family: my_font, serif;
+}
+
+.mat-menu-item {
+  font-family: my_font, serif;
+  font-weight: bolder;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
 }
