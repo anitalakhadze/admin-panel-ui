@@ -3,16 +3,22 @@
     <h1>ტრანზაქციები</h1>
   </div>
 
-  <div *ngIf="transactionsDataSource.data.length > 0" class="transactions-table">
-    <table mat-table class="mat-elevation-z8" [dataSource]="transactionsDataSource" >
+  <div class="filter-field">
+    <mat-form-field >
+      <input (keyup)="applyFilter($event)" matInput placeholder="ფილტრი">
+    </mat-form-field>
+  </div>
 
-      <ng-container matColumnDef="transactionId">
-        <th mat-header-cell *matHeaderCellDef>ტრანზაქციის ID</th>
+  <div *ngIf="transactionsDataSource.data.length > 0" class="transactions-table">
+    <table mat-table class="mat-elevation-z8" [dataSource]="transactionsDataSource" matSort matSortStart="desc">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ტრანზაქციის ID</th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef>თანხა</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>თანხა</th>
         <td mat-cell *matCellDef="let element"> {{element.amount}}</td>
       </ng-container>
 
@@ -27,7 +33,7 @@
       </ng-container>
 
       <ng-container matColumnDef="dateCreated">
-        <th mat-header-cell *matHeaderCellDef>თარიღი</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>თარიღი</th>
         <td mat-cell *matCellDef="let element"> {{(element.dateCreated)}}</td>
       </ng-container>
 
@@ -55,7 +61,8 @@
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5]" showFirstLastButtons class="paginator"></mat-paginator>
   </div>
 
-  <button mat-raised-button class="download-transactions-button" color="primary" (click)="downloadExcel()">
+  <button mat-raised-button class="download-transactions-button" color="primary"
+          (click)="downloadExcel()" [loading]="exportButtonLoading">
     ექსპორტი
   </button>
 </div>

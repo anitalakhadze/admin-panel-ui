@@ -46,3 +46,10 @@ button:hover {
   color: #fff;
   /*transform: translateY(-3px);*/
 }
+
+.filter-field {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
