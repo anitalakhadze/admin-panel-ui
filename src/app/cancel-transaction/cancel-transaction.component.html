@@ -1,0 +1,16 @@
+<div>
+  <h2 mat-dialog-title style="text-align: center">გაუქმება</h2>
+  <mat-dialog-content>
+    <div *ngIf="!successfullySent">შპს "ოპპა"-ს გაეგზავნება შეტყობინება ტრანზაქციის გაუქმების მოთხოვნით. ნამდვილად გსურთ გაგრძელება?</div>
+    <div *ngIf="successfullySent">შეტყობინება გაგზავნილია.</div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="float-right">
+    <button mat-raised-button color="primary" id="continue-button"
+            style="margin-right: auto; margin-left: auto; display: block; color:white;"
+            (click)="submit()">გაგრძელება</button>
+    <button mat-raised-button color="accent"
+            style="margin-right: auto; margin-left: auto; display: block;"
+            (click)="closeDialog()">დახურვა</button>
+  </mat-dialog-actions>
+</div>
