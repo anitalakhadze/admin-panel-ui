@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     password: [null, [Validators.required]]
   });
 
+  hide: boolean = true;
+
   tokens: Tokens = {
     access_token: "",
     refresh_token: ""

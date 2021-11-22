@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   Statuses: any = ['ACTIVE', 'INACTIVE'];
 
   buttonLoading: boolean = false;
+  hide: boolean = true;
 
   registerFormGroup = this.formBuilder.group({
     name: [null, [Validators.required]],

@@ -23,6 +23,9 @@ export class ChangePasswordComponent implements OnInit {
 
   buttonLoading: boolean = false;
 
+  hideOld: boolean = true;
+  hideNew: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
