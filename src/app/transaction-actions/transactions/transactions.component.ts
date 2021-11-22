@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Transaction} from "../../interfaces";
 import {ApiService} from "../../service/api.service";
@@ -10,8 +10,7 @@ import {MatSort} from "@angular/material/sort";
 import {SnackbarService} from "../../service/snackbar.service";
 import {CancelTransactionComponent} from "../cancel-transaction/cancel-transaction.component";
 import {MatPaginator} from "@angular/material/paginator";
-import {HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../../service/auth.service";
+import {TRANSACTIONS_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-transactions',
@@ -38,8 +37,7 @@ export class TransactionsComponent implements OnInit {
     private notificationService: NotificationService,
     private excelService: ExcelService,
     public dialog: MatDialog,
-    private snackbarService: SnackbarService,
-    private authService: AuthService
+    private snackbarService: SnackbarService
   ) {
   }
 
@@ -52,9 +50,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   getTransactions(): void {
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    this.apiService.get("/transactions")
+    this.apiService.get(TRANSACTIONS_ENDPOINT)
       .subscribe(
         data => {
           this.transactionsDataSource = new MatTableDataSource<Transaction>(data);
@@ -62,7 +58,7 @@ export class TransactionsComponent implements OnInit {
           this.transactionsList = data;
           console.table(data);
           this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით')
-        }, error => {
+        }, () => {
           this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატების უგარეშოდ')
         }
       )

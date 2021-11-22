@@ -1,13 +1,12 @@
 import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {TransactionDetails} from "../../interfaces";
 import {ApiService} from "../../service/api.service";
 import {AuthService} from "../../service/auth.service";
-import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
 import {createSpinner, hideSpinner, showSpinner, SpinnerArgs} from "@syncfusion/ej2-angular-popups";
 import {Router} from "@angular/router";
 import {SnackbarService} from "../../service/snackbar.service";
+import {TRANSACTIONS_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-cancel-transaction',
@@ -50,10 +49,7 @@ export class CancelTransactionComponent implements OnInit, AfterViewInit
     this.continueButtonLoading = true;
     showSpinner(<HTMLElement>document.getElementById("continue-button"))
     let username = this.authService.getLoggedInUsername();
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.post("/transactions/" + this.id, username)
+    this.apiService.post(`${TRANSACTIONS_ENDPOINT}/${this.id}`, username)
       .pipe(finalize(() => {
         this.continueButtonLoading = false;
         hideSpinner(<HTMLElement>document.getElementById("login-button"))
@@ -61,7 +57,6 @@ export class CancelTransactionComponent implements OnInit, AfterViewInit
       .subscribe(() => {
         this.successfullySent = true;
         hideSpinner(<HTMLElement>document.getElementById("continue-button"))
-        console.log("Here success")
         this.continueButtonLoading = false;
         this.snackbarService.openSnackBar('ტრანზაქციის გაუქმების შეტყობინება გაიგზავნა წარმატებით');
       }, error => {

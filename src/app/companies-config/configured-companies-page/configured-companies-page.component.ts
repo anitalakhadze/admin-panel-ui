@@ -2,12 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SnackbarService} from "../../service/snackbar.service";
-import {AuthService} from "../../service/auth.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {Company} from "../../interfaces";
-import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
+import {ACTIVE_COMPANIES_ENDPOINT, COMPANIES_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-configured-companies-page',
@@ -27,8 +26,7 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBarService: SnackbarService,
-    private authService: AuthService
+    private snackBarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -37,10 +35,7 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
 
   getActiveCompanies() {
     this.buttonLoading = true;
-    // let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-    //   .set('Content-Type', 'application/json');
-    // console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.get("/companies/active")
+    this.apiService.get(ACTIVE_COMPANIES_ENDPOINT)
       .pipe(finalize(() => this.buttonLoading = false))
       .subscribe(
         data => {
@@ -57,10 +52,7 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
 
   deactivateCompany(id: number) {
     this.deleteButtonLoading = true;
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.delete("/companies/" + id)
+    this.apiService.delete(`${COMPANIES_ENDPOINT}/${id}`)
       .pipe(finalize(() => {
         this.deleteButtonLoading = false;
         this.reloadPage();

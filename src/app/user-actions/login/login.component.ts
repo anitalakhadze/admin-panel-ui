@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {SnackbarService} from "../../service/snackbar.service";
+import {DASHBOARD_ENDPOINT, LOGIN_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-login',
@@ -73,15 +74,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
             let access_token = this.tokens.access_token;
             this.authService.registerLoggedInUserToken(access_token);
             console.log(access_token);
-            this.router.navigate(['/dashboard']).then(() => {
+            this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
               console.log("User has successfully logged in!")
             })
             console.log(this.jwtHelper.decodeToken(access_token).roles[0])
-            // @ts-ignore
-            console.log("This is the role locally " + this.jwtHelper.decodeToken(this.authService.getToken()).roles[0]);
-            console.log("This is the parsedToken " + this.authService.parsedToken);
             this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატებით')
-          }, error => {
+          }, () => {
             this.loginFormGroup.reset();
             this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატების უგარეშოდ')
           }

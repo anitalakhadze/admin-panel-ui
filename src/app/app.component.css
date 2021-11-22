@@ -11,3 +11,10 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.example-icon {
+  margin: 20px;
+  transform: scale(2);
+}
+
+

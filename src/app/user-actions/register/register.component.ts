@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../service/api.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
-import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
 import {SnackbarService} from "../../service/snackbar.service";
 import {Router} from "@angular/router";
+import {DASHBOARD_ENDPOINT, USERS_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-register',
@@ -42,20 +42,18 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.buttonLoading = true;
-    // let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-    //   .set('Content-Type', 'application/json');
-    this.apiService.post("/user", this.registerFormGroup.value)
+    this.apiService.post(USERS_ENDPOINT, this.registerFormGroup.value)
       .pipe(finalize(() => {
           this.buttonLoading = false;
         })
       )
       .subscribe(() => {
         this.registerFormGroup.reset();
-        this.router.navigate(['/dashboard']).then(() => {
+        this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
           console.log("User has been successfully registered!");
         })
         this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატებით");
-      }, error => {
+      }, () => {
         this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატების უგარეშოდ");
       })
   }

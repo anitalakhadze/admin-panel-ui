@@ -17,3 +17,9 @@ export interface Transaction {
   invoiceData: string;
   details: TransactionDetails;
 }
+
+export interface Company {
+  id: number;
+  companyId: number;
+  name: String;
+}

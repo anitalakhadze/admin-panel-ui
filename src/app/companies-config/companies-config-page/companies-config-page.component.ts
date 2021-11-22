@@ -6,8 +6,7 @@ import {SnackbarService} from "../../service/snackbar.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Company} from "../../interfaces";
 import {finalize} from "rxjs/operators";
-import {HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../../service/auth.service";
+import {COMPANIES_ENDPOINT, INACTIVE_COMPANIES_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-companies-config-page',
@@ -29,8 +28,7 @@ export class CompaniesConfigPageComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBarService: SnackbarService,
-    private authService: AuthService
+    private snackBarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -44,10 +42,7 @@ export class CompaniesConfigPageComponent implements OnInit {
 
   getInactiveCompanies() {
     this.buttonLoading = true;
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.get("/companies/inactive")
+    this.apiService.get(INACTIVE_COMPANIES_ENDPOINT)
       .pipe(finalize(() => this.buttonLoading = false))
       .subscribe(
         data => {
@@ -75,15 +70,14 @@ export class CompaniesConfigPageComponent implements OnInit {
 
   saveCompanies() {
     this.saveButtonLoading = true;
-    this.apiService.post("/companies", this.companiesToSaveArray)
+    this.apiService.post(COMPANIES_ENDPOINT, this.companiesToSaveArray)
       .pipe(finalize(() => {
           this.saveButtonLoading = false;
           this.reloadPage();
-        })
-      )
+        }))
       .subscribe(() => {
         this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატებით");
-      }, error => {
+      }, () => {
         this.saveButtonLoading = false;
         this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატების უგარეშოდ");
     })

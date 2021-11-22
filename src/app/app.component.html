@@ -1,24 +1,31 @@
 <mat-toolbar color="primary" class="app-header">
 
-  <button mat-fab color="accent" aria-label="Example"
-          [matMenuTriggerFor]="menu" *ngIf="authService.isUserLoggedIn()">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="logout()">გამოსვლა</button>
-    <button mat-menu-item routerLink="password" routerLinkActive="active">პაროლის ცვლილება</button>
-  </mat-menu>
-
-  <span style="margin-left: 10px">
-    <a href="#" target="_blank" class="positronx">Admin Panel Demo</a>
+  <span style="margin-left: 10px" class="positronx">
+    სამართავი პანელი DEMO
   </span>
 
   <span class="example-spacer"></span>
 
-  <span class="nav-tool-items">
-    <a mat-button routerLink="dashboard" routerLinkActive="active">პანელი</a>
-    <a mat-button routerLink="register" routerLinkActive="active" *ngIf="hasAdminRights()">რეგისტრაცია</a>
-  </span>
+  <div *ngIf="authService.isUserLoggedIn()">
+    <button style="color: white" mat-icon-button class="example-icon"
+            matTooltip="პანელი" matTooltipPosition="below"
+            routerLink="dashboard" routerLinkActive="active">
+      <mat-icon>dashboard</mat-icon>
+    </button>
+
+    <button style="color: white" mat-icon-button class="example-icon"
+            matTooltip="პაროლის ცვლილება" matTooltipPosition="below"
+            routerLink="password" routerLinkActive="active">
+      <mat-icon>vpn_key</mat-icon>
+    </button>
+
+    <button style="color: white" mat-icon-button class="example-icon"
+            matTooltip="გასვლა" matTooltipPosition="below"
+            (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+
 </mat-toolbar>
 
 <router-outlet></router-outlet>
