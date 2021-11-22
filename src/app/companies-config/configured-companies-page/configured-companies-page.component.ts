@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {SnackbarService} from "../../service/snackbar.service";
 import {AuthService} from "../../service/auth.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
@@ -37,10 +37,10 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
 
   getActiveCompanies() {
     this.buttonLoading = true;
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.get("/companies/active", headers)
+    // let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
+    //   .set('Content-Type', 'application/json');
+    // console.log("Headers: " + headers.get("Authorization"));
+    this.apiService.get("/companies/active")
       .pipe(finalize(() => this.buttonLoading = false))
       .subscribe(
         data => {
@@ -60,7 +60,7 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
       .set('Content-Type', 'application/json');
     console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.delete("/companies/" + id, headers)
+    this.apiService.delete("/companies/" + id)
       .pipe(finalize(() => {
         this.deleteButtonLoading = false;
         this.reloadPage();

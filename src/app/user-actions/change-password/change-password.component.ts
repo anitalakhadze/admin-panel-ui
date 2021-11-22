@@ -6,8 +6,8 @@ import {hideSpinner, showSpinner} from "@syncfusion/ej2-angular-popups";
 import {AuthService} from "../../service/auth.service";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
-import {NotificationService} from "../../utils/notification.service";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {NotificationService} from "../../service/notification.service";
+import {SnackbarService} from "../../service/snackbar.service";
 
 @Component({
   selector: 'app-change-password',
@@ -41,13 +41,9 @@ export class ChangePasswordComponent implements OnInit {
     if (this.passwordFormGroup.valid) {
       this.buttonLoading = true;
       showSpinner(<HTMLElement>document.getElementById("password-change-button"))
-      let oldPassword = this.passwordFormGroup.value.oldPassword;
-      let newPassword = this.passwordFormGroup.value.newPassword;
-      console.log("Old password is " + oldPassword, " and new password is " + newPassword);
       let username = this.authService.getLoggedInUsername();
       console.log("Before changing the token is " + this.authService.getToken());
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-        .set('Content-Type', 'application/json');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
       console.log("Headers: " + headers.get("Authorization"));
       this.apiService.put("/user/password/" + username, this.passwordFormGroup.value, headers)
         .pipe(finalize(() => {

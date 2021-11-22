@@ -8,7 +8,7 @@ import {createSpinner, showSpinner, hideSpinner, SpinnerArgs} from '@syncfusion/
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {SnackbarService} from "../../service/snackbar.service";
 
 @Component({
   selector: 'app-login',

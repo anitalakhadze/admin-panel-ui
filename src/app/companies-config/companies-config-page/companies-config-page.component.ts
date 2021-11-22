@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {ApiService} from "../../service/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {SnackbarService} from "../../service/snackbar.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Company} from "../../interfaces";
 import {finalize} from "rxjs/operators";
@@ -47,7 +47,7 @@ export class CompaniesConfigPageComponent implements OnInit {
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
       .set('Content-Type', 'application/json');
     console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.get("/companies/inactive", headers)
+    this.apiService.get("/companies/inactive")
       .pipe(finalize(() => this.buttonLoading = false))
       .subscribe(
         data => {
@@ -75,7 +75,7 @@ export class CompaniesConfigPageComponent implements OnInit {
 
   saveCompanies() {
     this.saveButtonLoading = true;
-    this.apiService.post("/companies", this.companiesToSaveArray, new HttpHeaders())
+    this.apiService.post("/companies", this.companiesToSaveArray)
       .pipe(finalize(() => {
           this.saveButtonLoading = false;
           this.reloadPage();

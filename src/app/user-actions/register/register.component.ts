@@ -4,7 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {SnackbarService} from "../../service/snackbar.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -42,9 +42,9 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.buttonLoading = true;
-    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
-      .set('Content-Type', 'application/json');
-    this.apiService.post("/user", this.registerFormGroup.value, headers)
+    // let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
+    //   .set('Content-Type', 'application/json');
+    this.apiService.post("/user", this.registerFormGroup.value)
       .pipe(finalize(() => {
           this.buttonLoading = false;
         })

@@ -7,7 +7,7 @@ import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
 import {createSpinner, hideSpinner, showSpinner, SpinnerArgs} from "@syncfusion/ej2-angular-popups";
 import {Router} from "@angular/router";
-import {SnackbarService} from "../../utils/snackbar.service";
+import {SnackbarService} from "../../service/snackbar.service";
 
 @Component({
   selector: 'app-cancel-transaction',
@@ -53,7 +53,7 @@ export class CancelTransactionComponent implements OnInit, AfterViewInit
     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
       .set('Content-Type', 'application/json');
     console.log("Headers: " + headers.get("Authorization"));
-    this.apiService.post("/transactions/" + this.id, username, headers)
+    this.apiService.post("/transactions/" + this.id, username)
       .pipe(finalize(() => {
         this.continueButtonLoading = false;
         hideSpinner(<HTMLElement>document.getElementById("login-button"))
