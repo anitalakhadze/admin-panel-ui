@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
               console.log("User has successfully logged in!")
             })
             console.log(this.jwtHelper.decodeToken(access_token).roles[0])
+            this.authService.setRoles(this.jwtHelper.decodeToken(access_token).roles[0]);
             this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატებით')
           }, () => {
             this.loginFormGroup.reset();

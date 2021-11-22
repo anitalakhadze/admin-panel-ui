@@ -1,14 +1,19 @@
 <div class="dashboard">
   <div class="dashboard-buttons">
-    <button mat-raised-button color="primary" routerLink="register" [routerLinkActive]="['active']">
+    <button mat-raised-button color="primary"
+            routerLink="register" [routerLinkActive]="['active']"
+            *ngIf="this.authService.hasRole('ADMIN')">
       კომპანიის რეგისტრაცია
     </button>
 
-    <button mat-raised-button color="primary" routerLink="transactions" [routerLinkActive]="['active']">
+    <button mat-raised-button color="primary"
+            routerLink="transactions" [routerLinkActive]="['active']">
       ტრანზაქციების ისტორია
     </button>
 
-    <button mat-raised-button color="primary" routerLink="companies" [routerLinkActive]="['active']">
+    <button mat-raised-button color="primary"
+            routerLink="companies" [routerLinkActive]="['active']"
+            *ngIf="this.authService.hasRole('ADMIN')">
       კომპანიების კონფიგურაცია
     </button>
   </div>
