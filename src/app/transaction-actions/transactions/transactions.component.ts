@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Transaction} from "../../interfaces";
 import {ApiService} from "../../service/api.service";
-import {NotificationService} from "../../service/notification.service";
 import {ExcelService} from "../../service/excel.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TransactionDetailsComponent} from "../transaction-details/transaction-details.component";
@@ -34,7 +33,6 @@ export class TransactionsComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private notificationService: NotificationService,
     private excelService: ExcelService,
     public dialog: MatDialog,
     private snackbarService: SnackbarService
