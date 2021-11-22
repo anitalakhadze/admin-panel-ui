@@ -1,44 +1,53 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Register</mat-card-title>-->
-<!--    </mat-card-header>-->
+    <!--    <mat-card-header>-->
+    <!--      <mat-card-title>Register</mat-card-title>-->
+    <!--    </mat-card-header>-->
 
-    <form class="example-form">
-
+    <form class="example-form" [formGroup]="registerFormGroup">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+          <input matInput placeholder="დასახელება" formControlName="name">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email">
+          <input matInput placeholder="მომხმარებლის სახელი" formControlName="username">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+          <input matInput placeholder="პაროლი" formControlName="password">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="IP Address">
+          <input matInput placeholder="IP მისამართი" formControlName="ipAddress">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Return URL">
+          <input matInput placeholder="eCommerce საიტის URL" formControlName="returnUrl">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Choose designation</mat-label>
-          <mat-select>
-            <mat-option [value]="user" *ngFor="let user of User">{{user}}
+          <mat-label>აირჩიე როლი</mat-label>
+          <mat-select formControlName="role">
+            <mat-option [value]="user" *ngFor="let user of Roles">{{user}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>აირჩიე სტატუსი</mat-label>
+          <mat-select formControlName="status">
+            <mat-option [value]="status" *ngFor="let status of Statuses">{{status}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
       </mat-card-content>
 
-      <button mat-stroked-button class="btn-block">Register</button>
-
+      <button mat-stroked-button class="btn-block"
+              (click)="register()">
+        რეგისტრაცია
+      </button>
     </form>
   </mat-card>
 </div>

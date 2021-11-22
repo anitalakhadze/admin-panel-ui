@@ -1,6 +1,6 @@
 h1 {
   height: auto;
-  margin-top: 15%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,6 +14,7 @@ h1 {
   font-size: larger;
   font-weight: bolder;
   padding: 30px;
+  text-align: center;
 }
 
 .mat-cell {
@@ -28,10 +29,11 @@ h1 {
 }
 
 .transactions-table {
-  width: fit-content;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .download-transactions-button {

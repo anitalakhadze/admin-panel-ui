@@ -9,6 +9,9 @@ import {TransactionDetailsComponent} from "../transaction-details/transaction-de
 import {MatSort} from "@angular/material/sort";
 import {SnackbarService} from "../utils/snackbar.service";
 import {CancelTransactionComponent} from "../cancel-transaction/cancel-transaction.component";
+import {MatPaginator} from "@angular/material/paginator";
+import {HttpHeaders} from "@angular/common/http";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   selector: 'app-transactions',
@@ -28,13 +31,17 @@ export class TransactionsComponent implements OnInit {
     this.transactionsDataSource.sort = sort;
   }
 
+  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
+
   constructor(
     private apiService: ApiService,
     private notificationService: NotificationService,
     private excelService: ExcelService,
     public dialog: MatDialog,
     private snackbarService: SnackbarService,
-  ) { }
+    private authService: AuthService
+  ) {
+  }
 
   ngOnInit(): void {
     this.getTransactions();
@@ -45,10 +52,13 @@ export class TransactionsComponent implements OnInit {
   }
 
   getTransactions(): void {
-    this.apiService.get("/transactions")
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken())
+      .set('Content-Type', 'application/json');
+    this.apiService.get("/transactions", headers)
       .subscribe(
         data => {
           this.transactionsDataSource = new MatTableDataSource<Transaction>(data);
+          setTimeout(() => this.transactionsDataSource.paginator = this.paginator);
           this.transactionsList = data;
           console.table(data);
           this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით')
@@ -66,15 +76,14 @@ export class TransactionsComponent implements OnInit {
 
   showDetails(data: any) {
     return this.dialog.open(TransactionDetailsComponent, {
-      width: '350',
+      width: '350px',
       data: data,
       disableClose: true,
     });
   }
-
   cancelTransaction(id: string) {
     return this.dialog.open(CancelTransactionComponent, {
-      width: '350',
+      width: '350px',
       data: id,
       disableClose: true,
     });
