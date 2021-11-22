@@ -14,7 +14,7 @@ export class ApiService {
     return this.httpClient.get(`${environment.api_url}${path}`, { params });
   }
 
-  put(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+  put(path: string, body: Object = {}, headers: HttpHeaders): Observable<any> {
     return this.httpClient.put(
       `${environment.api_url}${path}`,
       JSON.stringify(body),
