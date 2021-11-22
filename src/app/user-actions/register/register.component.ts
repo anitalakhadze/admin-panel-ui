@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../service/api.service";
+import {ApiService} from "../../service/api.service";
 import {FormBuilder, Validators} from "@angular/forms";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
-import {SnackbarService} from "../utils/snackbar.service";
+import {SnackbarService} from "../../utils/snackbar.service";
 import {Router} from "@angular/router";
 
 @Component({

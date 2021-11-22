@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {ApiService} from "../service/api.service";
+import {ApiService} from "../../service/api.service";
 import {Router} from "@angular/router";
 import {hideSpinner, showSpinner} from "@syncfusion/ej2-angular-popups";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
-import {NotificationService} from "../utils/notification.service";
-import {SnackbarService} from "../utils/snackbar.service";
+import {NotificationService} from "../../utils/notification.service";
+import {SnackbarService} from "../../utils/snackbar.service";
 
 @Component({
   selector: 'app-change-password',

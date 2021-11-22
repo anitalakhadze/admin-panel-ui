@@ -1,17 +1,17 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {Transaction} from "../interfaces";
-import {ApiService} from "../service/api.service";
-import {NotificationService} from "../utils/notification.service";
-import {ExcelService} from "../utils/excel.service";
+import {Transaction} from "../../interfaces";
+import {ApiService} from "../../service/api.service";
+import {NotificationService} from "../../utils/notification.service";
+import {ExcelService} from "../../utils/excel.service";
 import {MatDialog} from "@angular/material/dialog";
 import {TransactionDetailsComponent} from "../transaction-details/transaction-details.component";
 import {MatSort} from "@angular/material/sort";
-import {SnackbarService} from "../utils/snackbar.service";
+import {SnackbarService} from "../../utils/snackbar.service";
 import {CancelTransactionComponent} from "../cancel-transaction/cancel-transaction.component";
 import {MatPaginator} from "@angular/material/paginator";
 import {HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-transactions',

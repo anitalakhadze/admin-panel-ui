@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {TransactionDetails} from "../interfaces";
-import {ApiService} from "../service/api.service";
-import {AuthService} from "../service/auth.service";
+import {TransactionDetails} from "../../interfaces";
+import {ApiService} from "../../service/api.service";
+import {AuthService} from "../../service/auth.service";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
 import {createSpinner, hideSpinner, showSpinner, SpinnerArgs} from "@syncfusion/ej2-angular-popups";
 import {Router} from "@angular/router";
-import {SnackbarService} from "../utils/snackbar.service";
+import {SnackbarService} from "../../utils/snackbar.service";
 
 @Component({
   selector: 'app-cancel-transaction',
