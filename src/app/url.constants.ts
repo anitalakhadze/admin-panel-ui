@@ -7,6 +7,7 @@ export const LOGIN_ENDPOINT = "/login";
 
 // users
 export const USERS_ENDPOINT = "/users";
+export const USERS_EXCEL_ENDPOINT = USERS_ENDPOINT + "/excel";
 export const CHANGE_PASSWORD_ENDPOINT = USERS_ENDPOINT + "/password";
 
 // transactions

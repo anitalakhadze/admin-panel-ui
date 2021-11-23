@@ -65,9 +65,8 @@
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="paginator"></mat-paginator>
   </div>
 
-<!--  <button mat-raised-button color="primary" class="save-companies-button"-->
-<!--          (click)="saveCompanies()" [loading]="saveButtonLoading"-->
-<!--          [disabled]="companiesToSaveArray.length <= 0">-->
-<!--    შენახვა-->
-<!--  </button>-->
+  <button mat-raised-button class="download-users-button" color="primary" id="export-button"
+          (click)="downloadExcel()" [loading]="exportButtonLoading" [disabled]="exportButtonLoading">
+    ექსპორტი
+  </button>
 </div>
