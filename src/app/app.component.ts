@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "./service/auth.service";
+import {SnackbarService} from "./service/snackbar.service";
 
 @Component({
   selector: 'app-root',
@@ -10,24 +11,13 @@ export class AppComponent {
   title = 'admin-panel-ui';
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private snackBarService: SnackbarService
   ) {
   }
 
   logout() {
     this.authService.logout();
-  }
-
-  hasAdminRights(): boolean {
-    if (this.authService.isUserLoggedIn()) {
-      if (this.authService.hasRole('ADMIN')) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-    // return this.authService.isUserLoggedIn() && this.authService.hasRole('ADMIN');
+    this.snackBarService.openSnackBar("აპლიკაციიდან გამოსვლა განხორციელდა წარმატებით");
   }
 }

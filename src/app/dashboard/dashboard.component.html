@@ -1,8 +1,14 @@
 <div class="dashboard">
   <div class="dashboard-buttons">
     <button mat-raised-button color="primary"
+            routerLink="users" [routerLinkActive]="['active']"
+            *ngIf="this.authService.hasRole('ROLE_ADMIN')">
+      კომპანიები
+    </button>
+
+    <button mat-raised-button color="primary"
             routerLink="register" [routerLinkActive]="['active']"
-            *ngIf="this.authService.hasRole('ADMIN')">
+            *ngIf="this.authService.hasRole('ROLE_ADMIN')">
       კომპანიის რეგისტრაცია
     </button>
 
@@ -13,7 +19,7 @@
 
     <button mat-raised-button color="primary"
             routerLink="companies" [routerLinkActive]="['active']"
-            *ngIf="this.authService.hasRole('ADMIN')">
+            *ngIf="this.authService.hasRole('ROLE_ADMIN')">
       კომპანიების კონფიგურაცია
     </button>
   </div>

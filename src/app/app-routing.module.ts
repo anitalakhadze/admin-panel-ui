@@ -6,12 +6,14 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TransactionsComponent} from "./transaction-actions/transactions/transactions.component";
 import {ChangePasswordComponent} from "./user-actions/change-password/change-password.component";
 import {CompaniesConfigMainPageComponent} from "./companies-config/companies-config-main-page/companies-config-main-page.component";
+import {UsersComponent} from "./user-actions/users/users.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'password', component: ChangePasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/users', component: UsersComponent },
   { path: 'dashboard/register', component: RegisterComponent },
   { path: 'dashboard/transactions', component: TransactionsComponent },
   { path: 'dashboard/companies', component: CompaniesConfigMainPageComponent },

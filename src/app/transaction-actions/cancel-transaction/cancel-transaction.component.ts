@@ -15,6 +15,7 @@ import {TRANSACTIONS_ENDPOINT} from "../../url.constants";
 })
 export class CancelTransactionComponent implements OnInit, AfterViewInit
 {
+  cancellationRequestSubmitted: boolean = false;
 
   id: string;
 
@@ -58,6 +59,7 @@ export class CancelTransactionComponent implements OnInit, AfterViewInit
         this.successfullySent = true;
         hideSpinner(<HTMLElement>document.getElementById("continue-button"))
         this.continueButtonLoading = false;
+        this.cancellationRequestSubmitted = true;
         this.snackbarService.openSnackBar('ტრანზაქციის გაუქმების შეტყობინება გაიგზავნა წარმატებით');
       }, error => {
         console.log(error);

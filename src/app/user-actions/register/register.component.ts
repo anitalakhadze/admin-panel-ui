@@ -13,7 +13,7 @@ import {DASHBOARD_ENDPOINT, USERS_ENDPOINT} from "../../url.constants";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  Roles: any = ['ADMIN', 'USER'];
+  Roles: any = ['ROLE_ADMIN', 'ROLE_USER'];
   Statuses: any = ['ACTIVE', 'INACTIVE'];
 
   buttonLoading: boolean = false;

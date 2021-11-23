@@ -23,6 +23,8 @@ import { CompaniesConfigPageComponent } from './companies-config/companies-confi
 import { ConfiguredCompaniesPageComponent } from './companies-config/configured-companies-page/configured-companies-page.component';
 import { ErrorDialogComponent } from './utils/error-dialog/error-dialog.component';
 import {AuthInterceptor} from "./utils/auth.interceptor";
+import { UsersComponent } from './user-actions/users/users.component';
+import { UserDetailsComponent } from './user-actions/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {AuthInterceptor} from "./utils/auth.interceptor";
     CompaniesConfigPageComponent,
     ConfiguredCompaniesPageComponent,
     ErrorDialogComponent,
+    UsersComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,

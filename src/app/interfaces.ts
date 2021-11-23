@@ -23,3 +23,12 @@ export interface Company {
   companyId: number;
   name: String;
 }
+
+export interface User {
+  id: number;
+  name: string;
+  ipAddress: string;
+  returnUrl: string;
+  isActive: string;
+  addedAt: string;
+}

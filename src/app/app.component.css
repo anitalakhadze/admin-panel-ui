@@ -17,4 +17,8 @@
   transform: scale(2);
 }
 
+.mat-icon-button:hover {
+  color: lightslategrey !important;
+}
+
 
