@@ -1,0 +1,38 @@
+<div>
+  <h2 mat-dialog-title style="text-align: center">ცვლილება</h2>
+
+  <mat-dialog-content>
+    <div>ID: {{ userData.id }}</div>
+    <div>სტატუსი: {{ userData.isActive }}</div>
+    <div>დამატების თარიღი: {{ userData.addedAt | date:'dd-MM-yyyy' }}</div>
+  </mat-dialog-content>
+
+  <form [formGroup]="updateUserFormGroup">
+    <div style="margin-top: 20px">
+      <mat-form-field style="width: 100%; margin-top: 10px">
+        <input matInput placeholder="დასახელება" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field style="width: 100%; margin-top: 10px">
+        <input matInput placeholder="IP მისამართი" formControlName="ipAddress">
+      </mat-form-field>
+
+      <mat-form-field style="width: 100%; margin-top: 10px">
+        <input matInput placeholder="საიტის მისამართი" formControlName="returnUrl">
+      </mat-form-field>
+    </div>
+  </form>
+
+  <mat-dialog-actions class="float-right">
+    <button mat-raised-button color="primary" id="submit-button"
+            style="margin-right: auto; margin-left: auto; display: block; color:white;"
+            [loading]="submitButtonLoading"
+            (click)="submit()" *ngIf="!saveRequestSubmitted">შენახვა</button>
+    <button mat-raised-button color="accent"
+            style="margin-right: auto; margin-left: auto; display: block;"
+            (click)="closeDialog()">დახურვა</button>
+  </mat-dialog-actions>
+</div>
+
+
+

@@ -1,0 +1,73 @@
+<div class="mat-elevation-z8">
+  <div class="flex-center">
+    <h1>კომპანიები</h1>
+  </div>
+
+  <div class="filter-field">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterToUsers($event)" placeholder="ფილტრი" #input autocomplete="off">
+    </mat-form-field>
+  </div>
+
+  <div class="companies-table">
+    <table mat-table [dataSource]="usersDataSource" class="mat-elevation-z8" matSort matSortStart="desc">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>დასახელება</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ipAddress">
+        <th mat-header-cell *matHeaderCellDef>IP მისამართი</th>
+        <td mat-cell *matCellDef="let element"> {{element.ipAddress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="returnUrl">
+        <th mat-header-cell *matHeaderCellDef>საიტის URL</th>
+        <td mat-cell *matCellDef="let element"> {{element.returnUrl}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>სტატუსი</th>
+        <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="addedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>დამატების თარიღი</th>
+        <td mat-cell *matCellDef="let element"> {{element.addedAt | date:'dd-MM-yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>შეცვლა</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="accent"
+                  (click)="editUser(element)">
+              <span class="material-icons">
+                edit
+              </span>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">კომპანია არ მოიძებნა"{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons class="paginator"></mat-paginator>
+  </div>
+
+<!--  <button mat-raised-button color="primary" class="save-companies-button"-->
+<!--          (click)="saveCompanies()" [loading]="saveButtonLoading"-->
+<!--          [disabled]="companiesToSaveArray.length <= 0">-->
+<!--    შენახვა-->
+<!--  </button>-->
+</div>
