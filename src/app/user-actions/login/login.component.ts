@@ -7,9 +7,8 @@ import {finalize} from "rxjs/operators";
 import {createSpinner, showSpinner, hideSpinner, SpinnerArgs} from '@syncfusion/ej2-angular-popups';
 import {Router} from "@angular/router";
 import {AuthService} from "../../service/auth.service";
-import {JwtHelperService} from "@auth0/angular-jwt";
 import {SnackbarService} from "../../service/snackbar.service";
-import {DASHBOARD_ENDPOINT, LOGIN_ENDPOINT} from "../../url.constants";
+import {DASHBOARD_ENDPOINT} from "../../url.constants";
 
 @Component({
   selector: 'app-login',
@@ -18,9 +17,6 @@ import {DASHBOARD_ENDPOINT, LOGIN_ENDPOINT} from "../../url.constants";
 })
 
 export class LoginComponent implements OnInit, AfterViewInit {
-
-  jwtHelper = new JwtHelperService();
-
   loginFormGroup = this.formBuilder.group({
     username: [null, [Validators.required]],
     password: [null, [Validators.required]]
@@ -77,8 +73,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
             this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
               console.log("User has successfully logged in!")
             })
-            console.log(this.jwtHelper.decodeToken(access_token).roles[0])
-            this.authService.setRoles(this.jwtHelper.decodeToken(access_token).roles[0]);
             this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატებით')
           }, () => {
             this.loginFormGroup.reset();

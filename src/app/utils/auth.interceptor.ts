@@ -3,7 +3,6 @@ import {Observable, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
 import {AuthService} from "../service/auth.service";
 import {ErrorDialogService} from "../service/error-dialog.service";
-import {Router} from "@angular/router";
 import {catchError} from "rxjs/operators";
 
 const TOKEN_HEADER_KEY = 'Authorization';
@@ -13,8 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
-    private errorDialogService: ErrorDialogService,
-    private router: Router
+    private errorDialogService: ErrorDialogService
   ) {
   }
 
@@ -27,8 +25,11 @@ export class AuthInterceptor implements HttpInterceptor {
       .handle(req)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          if(error.status == 403) {
+            this.authService.logout();
+          }
           const dialogRef = this.errorDialogService.openDialog(JSON.stringify(error.error), error.status);
-          dialogRef.afterClosed().subscribe(value => {
+          dialogRef.afterClosed().subscribe(() => {
             if(error.status == 401){
               this.authService.logout();
             }

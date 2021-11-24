@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {LOGIN_ENDPOINT} from "../url.constants";
 
 const jwtHelper = new JwtHelperService();
-const ACCESS_TOKEN_KEY = "access_token";
+const ACCESS_TOKEN_KEY = "AccessToken";
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +12,18 @@ const ACCESS_TOKEN_KEY = "access_token";
 export class AuthService {
 
   parsedToken: any;
-  roles: any = [];
 
   constructor(
     public router: Router
   ) {
     const token = this.getToken();
-    if (token !== null && this.parsedToken === null) {
+    if (token !== null && (this.parsedToken === null || this.parsedToken === undefined)) {
       this.parsedToken = jwtHelper.decodeToken(token);
     }
   }
 
   registerLoggedInUserToken(access_token: string): void {
+    this.parsedToken = jwtHelper.decodeToken(access_token);
     localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
   }
 
@@ -32,20 +32,17 @@ export class AuthService {
   }
 
   getRoles() {
-    return this.roles;
-  }
-
-  setRoles(roles: []) {
-    this.roles = roles;
-    console.log("This is local roles " + this.roles);
+    return this.parsedToken?.roles;
   }
 
   hasRole(role: String) {
-    return this.roles.includes(role);
+    // return this.roles.includes(role);
+    const roles = this.getRoles();
+    return roles !== undefined && roles.indexOf(role) !== -1;
   }
 
   isUserLoggedIn(): boolean {
-    return this.getToken() !== null;
+    return this.getToken() !== null || this.parsedToken === undefined;
   }
 
   logout() {

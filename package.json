@@ -25,6 +25,7 @@
     "@syncfusion/ej2-angular-popups": "^19.3.47",
     "file-saver": "^2.0.5",
     "mat-table-filter": "^10.2.0",
+    "ngx-mat-select-search": "^3.3.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.17.4",
