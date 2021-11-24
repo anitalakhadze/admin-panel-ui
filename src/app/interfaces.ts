@@ -32,3 +32,10 @@ export interface User {
   isActive: string;
   addedAt: string;
 }
+
+export interface SearchInfo {
+  username: string,
+  companyIds: number[];
+  startDate: Date;
+  endDate: Date;
+}

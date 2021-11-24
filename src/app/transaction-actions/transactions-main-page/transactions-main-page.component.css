@@ -1,6 +1,6 @@
 h1 {
   height: auto;
-  margin-top: 10%;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,7 +36,7 @@ h1 {
   flex-direction: column;
 }
 
-.download-transactions-button {
+.transactions-button {
   display: block;
   color: white;
   margin: 15px auto;

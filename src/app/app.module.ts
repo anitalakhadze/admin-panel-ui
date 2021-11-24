@@ -11,7 +11,6 @@ import { RegisterComponent } from './user-actions/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from "./app-routing.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TransactionsComponent } from './transaction-actions/transactions/transactions.component';
 import { TransactionDetailsComponent } from './transaction-actions/transaction-details/transaction-details.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { MatButtonLoadingDirective } from './utils/mat-button-loading.directive';
@@ -25,6 +24,10 @@ import { ErrorDialogComponent } from './utils/error-dialog/error-dialog.componen
 import {AuthInterceptor} from "./utils/auth.interceptor";
 import { UsersComponent } from './user-actions/users/users.component';
 import { UserDetailsComponent } from './user-actions/user-details/user-details.component';
+import { TransactionsMainPageComponent } from './transaction-actions/transactions-main-page/transactions-main-page.component';
+import { TransactionsFilterComponent } from './transaction-actions/companies-filter/transactions-filter.component';
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -32,7 +35,6 @@ import { UserDetailsComponent } from './user-actions/user-details/user-details.c
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    TransactionsComponent,
     TransactionDetailsComponent,
     MatButtonLoadingDirective,
     ChangePasswordComponent,
@@ -43,6 +45,8 @@ import { UserDetailsComponent } from './user-actions/user-details/user-details.c
     ErrorDialogComponent,
     UsersComponent,
     UserDetailsComponent,
+    TransactionsMainPageComponent,
+    TransactionsFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +59,11 @@ import { UserDetailsComponent } from './user-actions/user-details/user-details.c
     HttpClientModule,
     MatDialogModule,
     MatTableFilterModule,
+    NgxMatSelectSearchModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

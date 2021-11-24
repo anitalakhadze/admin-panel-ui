@@ -1,0 +1,17 @@
+h1 {
+  height: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-family: my_font, serif;
+  font-weight: bolder;
+}
+
+.get-transactions-button {
+  display: block;
+  color: white;
+  margin: 15px auto;
+  margin-bottom: 10px
+}
