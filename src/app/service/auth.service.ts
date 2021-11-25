@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-    return this.getToken() !== null || this.parsedToken === undefined;
+    return this.getToken() !== null && this.parsedToken !== undefined;
   }
 
   logout() {

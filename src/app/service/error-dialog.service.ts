@@ -15,7 +15,7 @@ export class ErrorDialogService {
     return this.dialog.open(ErrorDialogComponent, {
       data: {message, status},
       maxHeight: "100%",
-      width: "540px",
+      width: "350px",
       maxWidth: "100%",
       disableClose: false,
       hasBackdrop: true

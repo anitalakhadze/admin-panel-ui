@@ -1,0 +1,25 @@
+.error-dialog {
+  font-family: my_font, serif;
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+  margin-top: 15px;
+}
+
+.mat-raised-button {
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.mat-dialog-title {
+  font-family: my_font, serif;
+  text-align: center;
+}
+
+.error-message {
+  justify-content: center;
+}
+

@@ -1,14 +1,17 @@
-<h1 mat-dialog-title>Something went wrong!</h1>
-<div mat-dialog-content>
-  <p *ngIf="data.status">
-    <b>Status Code: {{data.status}}</b>
-  </p>
-  <p class="error-message">
-    {{data?.message}}
-  </p>
+<div class="error-dialog">
+  <div mat-dialog-title>დაფიქსირდა ხარვეზი!</div>
+  <div mat-dialog-content>
+    <p *ngIf="data.status">
+      <b>სტატუსის კოდი: {{ data.status }}</b>
+    </p>
+    <p class="error-message">
+      {{ data?.message }}
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="primary">
+      დახურვა
+    </button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-raised-button mat-dialog-close color="primary">
-    Close
-  </button>
-</div>
+

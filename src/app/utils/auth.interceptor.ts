@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
           if(error.status == 403) {
             this.authService.logout();
           }
-          const dialogRef = this.errorDialogService.openDialog(JSON.stringify(error.error), error.status);
+          const dialogRef = this.errorDialogService.openDialog(JSON.stringify(error.error, null, '\t'), error.status);
           dialogRef.afterClosed().subscribe(() => {
             if(error.status == 401){
               this.authService.logout();
