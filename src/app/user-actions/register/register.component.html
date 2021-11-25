@@ -1,13 +1,13 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
-    <!--    <mat-card-header>-->
-    <!--      <mat-card-title>Register</mat-card-title>-->
-    <!--    </mat-card-header>-->
+    <mat-card-header>
+      <mat-card-title>კომპანიის რეგისტრაცია</mat-card-title>
+    </mat-card-header>
 
     <form class="example-form" [formGroup]="registerFormGroup">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="კომპანიის დასახელება" formControlName="name">
+          <input matInput placeholder="დასახელება" formControlName="name">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -25,7 +25,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="eCommerce საიტის URL" formControlName="returnUrl">
+          <input matInput placeholder="საიტის URL" formControlName="returnUrl">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -48,7 +48,7 @@
 
       <button mat-stroked-button class="btn-block"
               (click)="register()">
-        რეგისტრაცია
+        დადასტურება
       </button>
     </form>
   </mat-card>

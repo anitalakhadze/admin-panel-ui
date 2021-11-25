@@ -1,18 +1,17 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
   <mat-card class="box">
-<!--    <mat-card-header>-->
-<!--      <mat-card-title>Login</mat-card-title>-->
-<!--    </mat-card-header>-->
+    <mat-card-header>
+      <mat-card-title>აპლიკაციაში შესვლა</mat-card-title>
+    </mat-card-header>
 
     <form class="example-form" [formGroup]="loginFormGroup">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username" formControlName="username">
+          <input matInput placeholder="მომხმარებლის სახელი" formControlName="username">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" formControlName="password"
+          <input matInput placeholder="პაროლი" formControlName="password"
                  [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
@@ -21,7 +20,7 @@
       <button mat-stroked-button class="btn-block"
               (click)="submitCredentials()"
               [disabled]="buttonLoading" id="login-button">
-        Login
+        დადასტურება
       </button>
     </form>
   </mat-card>

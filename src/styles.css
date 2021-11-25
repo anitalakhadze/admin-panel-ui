@@ -52,7 +52,7 @@ body {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   z-index: 5;
-  max-width: 330px;
+  max-width: 500px;
 }
 
 .box.back {
@@ -88,18 +88,24 @@ body {
 .main-wrapper .example-full-width,
 .main-wrapper .btn-block {
   width: 100%;
+  font-family: my_font, serif;
+  font-weight: bold;
+  font-size: medium;
 }
 
 .main-wrapper mat-card-header {
   text-align: center;
+  margin-bottom: 20px;
   width: 100%;
   display: block;
   font-weight: 700;
 }
 
 .main-wrapper mat-card-header mat-card-title {
-  font-size: 30px;
   margin: 0;
+  font-family: my_font, serif;
+  font-weight: bolder;
+  font-size: x-large;
 }
 
 .main-wrapper .mat-card {

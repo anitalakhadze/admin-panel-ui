@@ -78,8 +78,8 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
     })
   }
 
-  applyFilter(filterValue: KeyboardEvent) {
-    this.transactionsDataSource.filter = (filterValue.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+  applyFilter(event: Event) {
+    this.transactionsDataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   showDetails(data: any) {
@@ -137,8 +137,8 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
       }))
       .subscribe(
         (data) => {
-          console.log(data);
-          saveAs(data, 'ტრანზაქციები.csv');
+          const blob = new Blob([data], { type: 'text/plain; charset=UTF-8"'});
+          saveAs(blob, 'ტრანზაქციები.csv');
           this.exportButtonLoading = false;
           this.snackbarService.openSnackBar("ექსპორტი განხორციელდა წარმატებით");
         }, () => {
