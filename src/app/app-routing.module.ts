@@ -7,16 +7,18 @@ import {ChangePasswordComponent} from "./user-actions/change-password/change-pas
 import {CompaniesConfigMainPageComponent} from "./companies-config/companies-config-main-page/companies-config-main-page.component";
 import {UsersComponent} from "./user-actions/users/users.component";
 import {TransactionsMainPageComponent} from "./transaction-actions/transactions-main-page/transactions-main-page.component";
+import {AuthGuard} from "./service/auth.guard";
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
-  { path: 'password', component: ChangePasswordComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'dashboard/users', component: UsersComponent },
-  { path: 'dashboard/register', component: RegisterComponent },
-  { path: 'dashboard/transactions', component: TransactionsMainPageComponent },
-  { path: 'dashboard/companies', component: CompaniesConfigMainPageComponent },
+  { path: 'password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/transactions', component: TransactionsMainPageComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/companies', component: CompaniesConfigMainPageComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

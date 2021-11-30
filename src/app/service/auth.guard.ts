@@ -11,18 +11,11 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    const restrictForLoggedInUser = route.data.restrictForLoggedInUser
-    if (!this.authService.isUserLoggedIn()) {
-      if(restrictForLoggedInUser){
-        return true;
-      }
-      this.router.navigate(['login']);
+    if (this.authService.isUserLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
       return false;
     }
-    if ((route.data.role && !this.authService.hasRole(route.data.role)) || restrictForLoggedInUser) {
-      this.router.navigate(['/']);
-      return false;
-    }
-    return true;
   }
 }

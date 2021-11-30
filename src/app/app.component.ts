@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AuthService} from "./service/auth.service";
 import {SnackbarService} from "./service/snackbar.service";
 
@@ -19,5 +19,10 @@ export class AppComponent {
   logout() {
     this.authService.logout();
     this.snackBarService.openSnackBar("აპლიკაციიდან გამოსვლა განხორციელდა წარმატებით");
+  }
+
+  @HostListener("window:beforeunload", ["$event"])
+  clearLocalStorage(event: Event) {
+    localStorage.clear();
   }
 }
