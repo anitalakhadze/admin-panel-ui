@@ -4,7 +4,7 @@ import {User} from "../../interfaces";
 import {createSpinner, hideSpinner, showSpinner, SpinnerArgs} from "@syncfusion/ej2-angular-popups";
 import {ApiService} from "../../service/api.service";
 import {SnackbarService} from "../../service/snackbar.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {USERS_ENDPOINT} from "../../url.constants";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
@@ -31,9 +31,14 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
   ) {
     this.userData = data;
     this.updateUserFormGroup = this.formBuilder.group({
-      name: [this.userData.name, [Validators.required]],
-      ipAddress: [this.userData.ipAddress, [Validators.required]],
-      returnUrl: [this.userData.returnUrl, [Validators.required]]
+      name: new FormControl(this.userData.name,
+        [Validators.required, Validators.maxLength(25)]),
+      ipAddress: new FormControl(this.userData.ipAddress,
+        [Validators.required, Validators.maxLength(25),
+          Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]),
+      returnUrl: new FormControl(this.userData.returnUrl,
+        [Validators.required, Validators.maxLength(100),
+          Validators.pattern('(https?:\\/\\/)?([\\\\da-z.-]+)\\.([a-z.]{2,6})[\\/\\\\w .-]*\\/?')]),
     });
   }
 
@@ -47,27 +52,29 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-    this.submitButtonLoading = true;
-    showSpinner(<HTMLElement>document.getElementById("continue-button"))
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.apiService.put(`${USERS_ENDPOINT}/${this.userData.id}`, this.updateUserFormGroup.value, headers)
-      .pipe(finalize(() => {
-        this.submitButtonLoading = false;
-        hideSpinner(<HTMLElement>document.getElementById("submit-button"))
-      }))
-      .subscribe(() => {
-        hideSpinner(<HTMLElement>document.getElementById("submit-button"))
-        this.submitButtonLoading = false;
-        this.saveRequestSubmitted = true;
-        this.updateUserFormGroup.disable();
-        this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატებით');
-      }, error => {
-        console.log(error);
-        this.saveRequestSubmitted = false;
-        this.submitButtonLoading = false;
-        hideSpinner(<HTMLElement>document.getElementById("submit-button"))
-        this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატების უგარეშოდ')
-      })
+    if (this.updateUserFormGroup.valid){
+      this.submitButtonLoading = true;
+      showSpinner(<HTMLElement>document.getElementById("continue-button"))
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+      this.apiService.put(`${USERS_ENDPOINT}/${this.userData.id}`, this.updateUserFormGroup.value, headers)
+        .pipe(finalize(() => {
+          this.submitButtonLoading = false;
+          hideSpinner(<HTMLElement>document.getElementById("submit-button"))
+        }))
+        .subscribe(() => {
+          hideSpinner(<HTMLElement>document.getElementById("submit-button"))
+          this.submitButtonLoading = false;
+          this.saveRequestSubmitted = true;
+          this.updateUserFormGroup.disable();
+          this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატებით');
+        }, error => {
+          console.log(error);
+          this.saveRequestSubmitted = false;
+          this.submitButtonLoading = false;
+          hideSpinner(<HTMLElement>document.getElementById("submit-button"))
+          this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატების უგარეშოდ')
+        })
+    }
   }
 
   closeDialog() {

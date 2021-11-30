@@ -19,7 +19,7 @@
 
       <button mat-stroked-button class="btn-block"
               (click)="submitCredentials()"
-              [disabled]="buttonLoading" id="login-button">
+              [disabled]="!loginFormGroup.valid" id="login-button">
         დადასტურება
       </button>
     </form>

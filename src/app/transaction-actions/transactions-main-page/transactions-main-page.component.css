@@ -59,3 +59,7 @@ button:hover {
 .paginator {
   width: 100%;
 }
+
+.mat-raised-button{
+  font-family: my_font, serif;
+}

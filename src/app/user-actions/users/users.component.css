@@ -61,3 +61,7 @@ button:hover {
   color: white;
   margin: 15px auto;
 }
+
+.mat-raised-button {
+  font-family: my_font, serif;
+}

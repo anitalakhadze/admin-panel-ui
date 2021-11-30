@@ -11,14 +11,29 @@
     <div style="margin-top: 20px">
       <mat-form-field style="width: 100%; margin-top: 10px">
         <input matInput placeholder="დასახელება" formControlName="name">
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('name')?.errors?.maxlength">
+          <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+        </div>
       </mat-form-field>
 
       <mat-form-field style="width: 100%; margin-top: 10px">
         <input matInput placeholder="IP მისამართი" formControlName="ipAddress">
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('ipAddress')?.errors?.maxlength">
+          <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+        </div>
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('ipAddress')?.errors?.pattern">
+          <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+        </div>
       </mat-form-field>
 
       <mat-form-field style="width: 100%; margin-top: 10px">
         <input matInput placeholder="საიტის მისამართი" formControlName="returnUrl">
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('returnUrl')?.errors?.maxlength">
+          <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+        </div>
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('returnUrl')?.errors?.pattern">
+          <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+        </div>
       </mat-form-field>
     </div>
   </form>
@@ -27,6 +42,7 @@
     <button mat-raised-button color="primary" id="submit-button"
             style="margin-right: auto; margin-left: auto; display: block; color:white;"
             [loading]="submitButtonLoading"
+            [disabled]="!updateUserFormGroup.valid"
             (click)="submit()" *ngIf="!saveRequestSubmitted">შენახვა</button>
     <button mat-raised-button color="accent"
             style="margin-right: auto; margin-left: auto; display: block;"

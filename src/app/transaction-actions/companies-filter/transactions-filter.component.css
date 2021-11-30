@@ -15,3 +15,7 @@ h1 {
   margin: 15px auto;
   margin-bottom: 10px
 }
+
+.mat-raised-button {
+  font-family: my_font, serif;
+}

@@ -8,24 +8,45 @@
       <mat-card-content>
         <mat-form-field class="example-full-width">
           <input matInput placeholder="დასახელება" formControlName="name">
+          <div class="text-danger" *ngIf="registerFormGroup.get('name')?.errors?.maxlength">
+            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+          </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="მომხმარებლის სახელი" formControlName="username">
+          <div class="text-danger" *ngIf="registerFormGroup.get('username')?.errors?.maxlength">
+            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+          </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="პაროლი" formControlName="password"
                  [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <div class="text-danger" *ngIf="registerFormGroup.get('password')?.errors?.maxlength">
+            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+          </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="IP მისამართი" formControlName="ipAddress">
+          <div class="text-danger" *ngIf="registerFormGroup.get('ipAddress')?.errors?.maxlength">
+            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+          </div>
+          <div class="text-danger" *ngIf="registerFormGroup.get('ipAddress')?.errors?.pattern">
+            <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+          </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput placeholder="საიტის URL" formControlName="returnUrl">
+          <div class="text-danger" *ngIf="registerFormGroup.get('returnUrl')?.errors?.maxlength">
+            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+          </div>
+          <div class="text-danger" *ngIf="registerFormGroup.get('returnUrl')?.errors?.pattern">
+            <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+          </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -47,7 +68,8 @@
       </mat-card-content>
 
       <button mat-stroked-button class="btn-block"
-              (click)="register()">
+              (click)="register()"
+              [disabled]="!registerFormGroup.valid">
         დადასტურება
       </button>
     </form>
