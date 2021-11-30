@@ -40,6 +40,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 ) { }
 
   ngOnInit(): void {
+    if (this.authService.isUserLoggedIn()) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   ngAfterViewInit(): void {

@@ -7,6 +7,7 @@ export interface TransactionDetails {
   userId: number;
   paymentSource: string;
   status: string;
+  ecommerceCompanyName: string;
 }
 
 export interface Transaction {

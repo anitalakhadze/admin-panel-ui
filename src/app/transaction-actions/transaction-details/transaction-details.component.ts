@@ -16,6 +16,7 @@ export class TransactionDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: TransactionDetails
   ) {
     this.transactionData = data;
+    console.log(data);
   }
 
   ngOnInit(): void {
