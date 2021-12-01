@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../service/api.service";
 import {Router} from "@angular/router";
 import {createSpinner, hideSpinner, showSpinner, SpinnerArgs} from "@syncfusion/ej2-angular-popups";
@@ -16,11 +16,7 @@ import {CHANGE_PASSWORD_ENDPOINT, DASHBOARD_ENDPOINT} from "../../url.constants"
 })
 export class ChangePasswordComponent implements OnInit {
 
-  passwordFormGroup = this.formBuilder.group({
-    oldPassword: [null, [Validators.required]],
-    newPassword: [null, [Validators.required]],
-    newPasswordDub: [null, [Validators.required]]
-  });
+  passwordFormGroup!: FormGroup;
 
   buttonLoading: boolean = false;
 
@@ -37,38 +33,48 @@ export class ChangePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.passwordFormGroup = this.formBuilder.group({
+      oldPassword: new FormControl(null,
+        [Validators.required, Validators.maxLength(20)]),
+      newPassword: new FormControl(null,
+        [Validators.required, Validators.maxLength(20)]),
+      newPasswordDub: new FormControl(null,
+        [Validators.required, Validators.maxLength(20)])
+    });
     createSpinner(<SpinnerArgs>{
       target: document.getElementById('password-change-button')
     });
   }
 
   changePassword() {
-    if (this.passwordFormGroup.value.oldPassword == this.passwordFormGroup.value.newPassword) {
-      this.snackbarService.openSnackBar("ძველი და ახალი პაროლები ემთხვევა ერთმანეთს");
-    } else if (this.passwordFormGroup.value.newPassword != this.passwordFormGroup.value.newPasswordDub) {
-      this.snackbarService.openSnackBar("ახალი და განმეორებით შეყვანილი პაროლები არ ემთხვევა ერთმანეთს");
-    } else {
-      if (this.passwordFormGroup.valid) {
-        this.buttonLoading = true;
-        showSpinner(<HTMLElement>document.getElementById("password-change-button"))
-        let username = this.authService.getLoggedInUsername();
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        this.apiService.put(`${CHANGE_PASSWORD_ENDPOINT}/${username}`, this.passwordFormGroup.value, headers)
-          .pipe(finalize(() => {
-            this.buttonLoading = false;
-            hideSpinner(<HTMLElement>document.getElementById("password-change-button"))
-          }))
-          .subscribe(() => {
-            this.passwordFormGroup.reset();
-            this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
-              console.log("Password has been successfully changed!");
-            })
-            this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატებით');
-          }, () => {
-            this.passwordFormGroup.reset();
-            this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატების უგარეშოდ')
-          }
-          )
+    if (this.passwordFormGroup.valid) {
+      if (this.passwordFormGroup.value.oldPassword == this.passwordFormGroup.value.newPassword) {
+        this.snackbarService.openSnackBar("ძველი და ახალი პაროლები ემთხვევა ერთმანეთს");
+      } else if (this.passwordFormGroup.value.newPassword != this.passwordFormGroup.value.newPasswordDub) {
+        this.snackbarService.openSnackBar("ახალი და განმეორებით შეყვანილი პაროლები არ ემთხვევა ერთმანეთს");
+      } else {
+        if (this.passwordFormGroup.valid) {
+          this.buttonLoading = true;
+          showSpinner(<HTMLElement>document.getElementById("password-change-button"))
+          let username = this.authService.getLoggedInUsername();
+          let headers = new HttpHeaders().set('Content-Type', 'application/json');
+          this.apiService.put(`${CHANGE_PASSWORD_ENDPOINT}/${username}`, this.passwordFormGroup.value, headers)
+            .pipe(finalize(() => {
+              this.buttonLoading = false;
+              hideSpinner(<HTMLElement>document.getElementById("password-change-button"))
+            }))
+            .subscribe(() => {
+                this.passwordFormGroup.reset();
+                this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
+                  console.log("Password has been successfully changed!");
+                })
+                this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატებით');
+              }, () => {
+                this.passwordFormGroup.reset();
+                this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატების უგარეშოდ')
+              }
+            )
+        }
       }
     }
   }

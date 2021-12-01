@@ -8,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {USERS_ENDPOINT} from "../../url.constants";
 import {HttpHeaders} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-details',
@@ -27,7 +28,8 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private snackbarService: SnackbarService,
-    @Inject(MAT_DIALOG_DATA) public data: User
+    @Inject(MAT_DIALOG_DATA) public data: User,
+    private router: Router
   ) {
     this.userData = data;
     this.updateUserFormGroup = this.formBuilder.group({
@@ -83,6 +85,9 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
   }
 
   reloadPage(): void {
-    setTimeout(() => { window.location.reload()},1000);
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }

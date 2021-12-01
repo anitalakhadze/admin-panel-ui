@@ -84,6 +84,9 @@ export class CompaniesConfigPageComponent implements OnInit {
   }
 
   reloadPage(): void {
-    setTimeout(() => { window.location.reload()},1000);
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }

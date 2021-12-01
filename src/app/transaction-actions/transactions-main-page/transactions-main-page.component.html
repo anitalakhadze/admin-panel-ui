@@ -43,7 +43,9 @@
 
   <div class="filter-field">
     <mat-form-field >
-      <input (keyup)="applyFilter($event)" matInput placeholder="ფილტრი">
+      <input (keyup)="applyFilter($event)" matInput
+             maxlength="15" #input placeholder="ფილტრი">
+      <mat-hint align="end">{{input.value?.length || 0}}/15</mat-hint>
     </mat-form-field>
   </div>
 

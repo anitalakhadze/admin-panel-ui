@@ -5,7 +5,9 @@
 
   <div class="filter-field">
     <mat-form-field>
-      <input matInput (keyup)="applyFilterToUsers($event)" placeholder="ფილტრი" #input autocomplete="off">
+      <input matInput (keyup)="applyFilterToUsers($event)" maxlength="30"
+             placeholder="ფილტრი" #input autocomplete="off">
+      <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
     </mat-form-field>
   </div>
 
@@ -58,7 +60,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">კომპანია არ მოიძებნა"{{input.value}}"</td>
+        <td class="mat-cell" colspan="4">"{{input.value}}"-ის შემცველი ჩანაწერი არ მოიძებნა</td>
       </tr>
     </table>
 
