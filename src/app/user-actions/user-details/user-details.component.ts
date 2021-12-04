@@ -17,6 +17,7 @@ import {Router} from "@angular/router";
 })
 export class UserDetailsComponent implements OnInit, AfterViewInit {
   saveRequestSubmitted: boolean = false;
+  Roles: any = ['ROLE_ADMIN', 'ROLE_USER'];
 
   userData: User;
   updateUserFormGroup: FormGroup;
@@ -32,15 +33,20 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
     private router: Router
   ) {
     this.userData = data;
+    console.table(data);
     this.updateUserFormGroup = this.formBuilder.group({
       name: new FormControl(this.userData.name,
-        [Validators.required, Validators.maxLength(25)]),
+        [Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(25)]),
       ipAddress: new FormControl(this.userData.ipAddress,
         [Validators.required, Validators.maxLength(25),
           Validators.pattern('(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)')]),
       returnUrl: new FormControl(this.userData.returnUrl,
         [Validators.required, Validators.maxLength(100),
           Validators.pattern('(https?:\\/\\/)?([\\\\da-z.-]+)\\.([a-z.]{2,6})[\\/\\\\w .-]*\\/?')]),
+      role: new FormControl(this.userData.userRole,
+        [Validators.required]),
     });
   }
 

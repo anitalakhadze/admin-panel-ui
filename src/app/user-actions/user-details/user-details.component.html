@@ -11,6 +11,9 @@
     <div style="margin-top: 20px">
       <mat-form-field style="width: 100%; margin-top: 10px">
         <input matInput placeholder="დასახელება" formControlName="name">
+        <div class="text-danger" *ngIf="updateUserFormGroup.get('name')?.errors?.minlength">
+          <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 2</small>
+        </div>
         <div class="text-danger" *ngIf="updateUserFormGroup.get('name')?.errors?.maxlength">
           <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
         </div>
@@ -34,6 +37,14 @@
         <div class="text-danger" *ngIf="updateUserFormGroup.get('returnUrl')?.errors?.pattern">
           <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
         </div>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>როლი</mat-label>
+        <mat-select formControlName="role">
+          <mat-option [value]="user" *ngFor="let user of Roles">{{user}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
   </form>
