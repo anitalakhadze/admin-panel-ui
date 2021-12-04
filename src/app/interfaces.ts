@@ -32,6 +32,7 @@ export interface User {
   returnUrl: string;
   isActive: string;
   addedAt: string;
+  userRole: string;
 }
 
 export interface SearchInfo {

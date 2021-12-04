@@ -116,7 +116,11 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
         this.transactionsDataSource = new MatTableDataSource<Transaction>(data);
         setTimeout(() => this.transactionsDataSource.paginator = this.paginator);
         console.table(data);
-        this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით')
+        if (this.transactionsDataSource.data.length > 0) {
+          this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით');
+        } else {
+          this.snackbarService.openSnackBar('არჩეულ პერიოდში ტრანზაქციები არ მოიძებნა');
+        }
       }, () => {
         this.searchButtonLoading = false;
         hideSpinner(<HTMLElement>document.getElementById("continue-button"))

@@ -35,11 +35,20 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.passwordFormGroup = this.formBuilder.group({
       oldPassword: new FormControl(null,
-        [Validators.required, Validators.maxLength(20)]),
+        [Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^[A-Za-z0-9\\s!@#$%^&*()_+=-`~\\\\\\]\\[{}|\';:/.,?><]*$')]),
       newPassword: new FormControl(null,
-        [Validators.required, Validators.maxLength(20)]),
+        [Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^[A-Za-z0-9\\s!@#$%^&*()_+=-`~\\\\\\]\\[{}|\';:/.,?><]*$')]),
       newPasswordDub: new FormControl(null,
-        [Validators.required, Validators.maxLength(20)])
+        [Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(20),
+          Validators.pattern('^[A-Za-z0-9\\s!@#$%^&*()_+=-`~\\\\\\]\\[{}|\';:/.,?><]*$')])
     });
     createSpinner(<SpinnerArgs>{
       target: document.getElementById('password-change-button')

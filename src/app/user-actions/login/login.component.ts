@@ -18,8 +18,12 @@ import {DASHBOARD_ENDPOINT} from "../../url.constants";
 
 export class LoginComponent implements OnInit, AfterViewInit {
   loginFormGroup = this.formBuilder.group({
-    username: [null, [Validators.required]],
-    password: [null, [Validators.required]]
+    username: [null, [Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20)]],
+    password: [null, [Validators.required,
+      Validators.minLength(8),
+      Validators.pattern('^[A-Za-z0-9\\s!@#$%^&*()_+=-`~\\\\\\]\\[{}|\';:/.,?><]*$')]]
   });
 
   hide: boolean = true;
@@ -56,7 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.buttonLoading = true;
       showSpinner(<HTMLElement>document.getElementById("login-button"))
       let body = new URLSearchParams();
-      body.set('username', this.loginFormGroup.value.username);
+      body.set('username', this.loginFormGroup.value.username.trim());
       body.set('password', this.loginFormGroup.value.password);
       let options = {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
