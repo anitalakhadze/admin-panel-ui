@@ -21,8 +21,8 @@ export class AppComponent {
     this.snackBarService.openSnackBar("აპლიკაციიდან გამოსვლა განხორციელდა წარმატებით");
   }
 
-  @HostListener("window:beforeunload", ["$event"])
-  clearLocalStorage(event: Event) {
-    localStorage.clear();
-  }
+  // @HostListener("window:beforeunload", ["$event"])
+  // clearLocalStorage(event: Event) {
+  //   localStorage.clear();
+  // }
 }

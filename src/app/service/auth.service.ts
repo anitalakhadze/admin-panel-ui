@@ -24,11 +24,11 @@ export class AuthService {
 
   registerLoggedInUserToken(access_token: string): void {
     this.parsedToken = jwtHelper.decodeToken(access_token);
-    localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+    sessionStorage.setItem(ACCESS_TOKEN_KEY, access_token);
   }
 
   getToken() {
-    return localStorage.getItem(ACCESS_TOKEN_KEY);
+    return sessionStorage.getItem(ACCESS_TOKEN_KEY);
   }
 
   getRoles() {
@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   hasRole(role: String) {
-    // return this.roles.includes(role);
     const roles = this.getRoles();
     return roles !== undefined && roles.indexOf(role) !== -1;
   }
@@ -46,7 +45,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    sessionStorage.removeItem(ACCESS_TOKEN_KEY);
     this.parsedToken = null;
     this.router.navigate([LOGIN_ENDPOINT]);
   }

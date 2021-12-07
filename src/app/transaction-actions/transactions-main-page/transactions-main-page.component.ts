@@ -113,6 +113,7 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
       }))
       .subscribe(data => {
         this.searchButtonLoading = false;
+        this.range.reset();
         this.transactionsDataSource = new MatTableDataSource<Transaction>(data);
         setTimeout(() => this.transactionsDataSource.paginator = this.paginator);
         console.table(data);
