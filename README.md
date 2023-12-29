@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Since NodeJS 16, in Linux environments, the following parameter should be set in the environment to enable legacy SSLProvider and for the application to work properly: export NODE_OPTIONS=--openssl-legacy-provider
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding

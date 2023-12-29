@@ -118,14 +118,14 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
         setTimeout(() => this.transactionsDataSource.paginator = this.paginator);
         console.table(data);
         if (this.transactionsDataSource.data.length > 0) {
-          this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით');
+          this.snackbarService.openSnackBar('Data loaded successfully');
         } else {
-          this.snackbarService.openSnackBar('არჩეულ პერიოდში ტრანზაქციები არ მოიძებნა');
+          this.snackbarService.openSnackBar('No data found for selected period');
         }
       }, () => {
         this.searchButtonLoading = false;
         hideSpinner(<HTMLElement>document.getElementById("continue-button"))
-        this.snackbarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატების უგარეშოდ')
+        this.snackbarService.openSnackBar('Error loading data')
       });
   }
 
@@ -145,10 +145,10 @@ export class TransactionsMainPageComponent implements OnInit, AfterViewInit {
           const blob = new Blob([data], { type: 'text/plain; charset=UTF-8"'});
           saveAs(blob, 'ტრანზაქციები.csv');
           this.exportButtonLoading = false;
-          this.snackbarService.openSnackBar("ექსპორტი განხორციელდა წარმატებით");
+          this.snackbarService.openSnackBar("Data exported successfully!");
         }, () => {
           this.exportButtonLoading = false;
-          this.snackbarService.openSnackBar("ექსპორტი განხორციელდა წარმატების უგარეშოდ");
+          this.snackbarService.openSnackBar("Data export failed.");
         }
       )
   }

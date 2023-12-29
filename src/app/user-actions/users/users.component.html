@@ -1,12 +1,12 @@
 <div class="mat-elevation-z8">
   <div class="flex-center">
-    <h1>კომპანიები</h1>
+    <h1>Companies</h1>
   </div>
 
   <div class="filter-field">
     <mat-form-field>
       <input matInput (keyup)="applyFilterToUsers($event)" maxlength="30"
-             placeholder="ფილტრი" #input autocomplete="off">
+             placeholder="filter" #input autocomplete="off">
       <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
     </mat-form-field>
   </div>
@@ -20,32 +20,32 @@
       </ng-container>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>დასახელება</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="ipAddress">
-        <th mat-header-cell *matHeaderCellDef>IP მისამართი</th>
+        <th mat-header-cell *matHeaderCellDef>IP address</th>
         <td mat-cell *matCellDef="let element"> {{element.ipAddress}} </td>
       </ng-container>
 
       <ng-container matColumnDef="returnUrl">
-        <th mat-header-cell *matHeaderCellDef>საიტის URL</th>
+        <th mat-header-cell *matHeaderCellDef>Page URL</th>
         <td mat-cell *matCellDef="let element"> {{element.returnUrl}} </td>
       </ng-container>
 
       <ng-container matColumnDef="isActive">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>სტატუსი</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
         <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
       </ng-container>
 
       <ng-container matColumnDef="addedAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>დამატების თარიღი</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Registration date</th>
         <td mat-cell *matCellDef="let element"> {{element.addedAt | date:'dd-MM-yyyy'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef>შეცვლა</th>
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
         <td mat-cell *matCellDef="let element">
           <button mat-raised-button color="accent"
                   (click)="editUser(element)">
@@ -60,7 +60,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">"{{input.value}}"-ის შემცველი ჩანაწერი არ მოიძებნა</td>
+        <td class="mat-cell" colspan="4">Record satisfying the search criteria was not found.</td>
       </tr>
     </table>
 
@@ -69,6 +69,6 @@
 
   <button mat-raised-button class="download-users-button" color="primary" id="export-button"
           (click)="downloadExcel()" [loading]="exportButtonLoading" [disabled]="exportButtonLoading">
-    ექსპორტი
+    Export
   </button>
 </div>

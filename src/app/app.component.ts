@@ -18,7 +18,7 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
-    this.snackBarService.openSnackBar("აპლიკაციიდან გამოსვლა განხორციელდა წარმატებით");
+    this.snackBarService.openSnackBar("User logged out successfully");
   }
 
   // @HostListener("window:beforeunload", ["$event"])

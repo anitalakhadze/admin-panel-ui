@@ -76,10 +76,10 @@ export class CompaniesConfigPageComponent implements OnInit {
           this.reloadPage();
         }))
       .subscribe(() => {
-        this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატებით");
+        this.snackBarService.openSnackBar("Operation completed successfully!");
       }, () => {
         this.saveButtonLoading = false;
-        this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატების უგარეშოდ");
+        this.snackBarService.openSnackBar("Operation failed.");
     })
   }
 

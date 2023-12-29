@@ -1,26 +1,26 @@
 <mat-toolbar color="primary" class="app-header">
 
   <span style="margin-left: 10px" class="positronx">
-    სამართავი პანელი DEMO
+    Management Console DEMO
   </span>
 
   <span class="example-spacer"></span>
 
   <div *ngIf="authService.isUserLoggedIn()">
     <button style="color: white" mat-icon-button class="example-icon"
-            matTooltip="პანელი" matTooltipPosition="below"
+            matTooltip="Dashboard" matTooltipPosition="below"
             routerLink="dashboard" routerLinkActive="active">
       <mat-icon>dashboard</mat-icon>
     </button>
 
     <button style="color: white" mat-icon-button class="example-icon"
-            matTooltip="პაროლის ცვლილება" matTooltipPosition="below"
+            matTooltip="Change password" matTooltipPosition="below"
             routerLink="password" routerLinkActive="active">
       <mat-icon>vpn_key</mat-icon>
     </button>
 
     <button style="color: white" mat-icon-button class="example-icon"
-            matTooltip="გასვლა" matTooltipPosition="below"
+            matTooltip="Log out" matTooltipPosition="below"
             (click)="logout()">
       <mat-icon>exit_to_app</mat-icon>
     </button>

@@ -72,9 +72,9 @@ export class RegisterComponent implements OnInit {
           this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
             console.log("User has been successfully registered!");
           })
-          this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატებით");
+          this.snackBarService.openSnackBar("Operation completed successfully!");
         }, () => {
-          this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატების უგარეშოდ");
+          this.snackBarService.openSnackBar("Operation failed.");
         })
     }
   }

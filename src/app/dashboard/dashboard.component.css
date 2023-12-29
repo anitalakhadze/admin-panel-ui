@@ -31,7 +31,7 @@ button:hover {
 .mat-raised-button {
   color: white;
   font-family: my_font, serif;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .dashboard {

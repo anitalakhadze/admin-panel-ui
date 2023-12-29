@@ -1,12 +1,12 @@
 <form >
   <div class="flex-center">
     <mat-form-field style="width: 20%; margin-left: 40%;">
-      <mat-label>კომპანიები</mat-label>
+      <mat-label>Companies</mat-label>
       <mat-select [formControl]="companiesMultiCtrl" multiple #multiSelect>
         <mat-option>
           <ngx-mat-select-search [formControl]="companiesFilterController"
                                  [showToggleAllCheckbox]="true" (toggleAll)="toggleSelectAll($event)"
-                                 placeholderLabel="მონიშნე" noEntriesFoundLabel="კომპანია არ მოიძებნა ">
+                                 placeholderLabel="Select" noEntriesFoundLabel="Company was not found.">
           </ngx-mat-select-search>
         </mat-option>
 
@@ -22,5 +22,5 @@
         (click)="emitFilteredCompanies()"
         [loading]="searchButtonLoading"
         [disabled]="!companiesMultiCtrl.valid">
-  არჩევა
+  Select
 </button>

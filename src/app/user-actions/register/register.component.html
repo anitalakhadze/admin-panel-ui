@@ -1,68 +1,68 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>კომპანიის რეგისტრაცია</mat-card-title>
+      <mat-card-title>Register company</mat-card-title>
     </mat-card-header>
 
     <form class="example-form" [formGroup]="registerFormGroup">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="დასახელება" formControlName="name">
+          <input matInput placeholder="name" formControlName="name">
           <div class="text-danger" *ngIf="registerFormGroup.get('name')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">Name exceeds max allowed symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('name')?.errors?.minlength">
-            <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 2</small>
+            <small style="color:rgba(255,0,0,0.6);">Name should consist of min 2 symbols</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="მომხმარებლის სახელი" formControlName="username">
+          <input matInput placeholder="username" formControlName="username">
           <div class="text-danger" *ngIf="registerFormGroup.get('username')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">Username exceeds max allowed symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('username')?.errors?.minlength">
-            <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 2</small>
+            <small style="color:rgba(255,0,0,0.6);">Username should consist of min 2 symbols</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="პაროლი" formControlName="password"
+          <input matInput placeholder="password" formControlName="password"
                  [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <div class="text-danger" *ngIf="registerFormGroup.get('password')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">Password exceeds max allowed symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('password')?.errors?.minlength">
-            <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 8</small>
+            <small style="color:rgba(255,0,0,0.6);">Password should contain min 8 symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('password')?.errors?.pattern">
-            <small style="color:rgba(255,0,0,0.6);">დაშვებულია მხოლოდ ლათინური ასოები, ციფრები და სიმბოლოები</small>
+            <small style="color:rgba(255,0,0,0.6);">Only digits, symbols and Latin characters are allowed</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="IP მისამართი" formControlName="ipAddress">
+          <input matInput placeholder="IP address" formControlName="ipAddress">
           <div class="text-danger" *ngIf="registerFormGroup.get('ipAddress')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">IP address exceeds max allowed symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('ipAddress')?.errors?.pattern">
-            <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+            <small style="color:rgba(255,0,0,0.6);">Format is invalid</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="საიტის URL" formControlName="returnUrl">
+          <input matInput placeholder="Page URL" formControlName="returnUrl">
           <div class="text-danger" *ngIf="registerFormGroup.get('returnUrl')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">Page URL exceeds max allowed symbols</small>
           </div>
           <div class="text-danger" *ngIf="registerFormGroup.get('returnUrl')?.errors?.pattern">
-            <small style="color:rgba(255,0,0,0.6);">ფორმატი არასწორია</small>
+            <small style="color:rgba(255,0,0,0.6);">Format is invalid</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>აირჩიე როლი</mat-label>
+          <mat-label>Select role</mat-label>
           <mat-select formControlName="role">
             <mat-option [value]="user" *ngFor="let user of Roles">{{user}}
             </mat-option>
@@ -70,7 +70,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>აირჩიე სტატუსი</mat-label>
+          <mat-label>Select status</mat-label>
           <mat-select formControlName="status">
             <mat-option [value]="status" *ngFor="let status of Statuses">{{status}}
             </mat-option>
@@ -82,7 +82,7 @@
       <button mat-stroked-button class="btn-block"
               (click)="register()"
               [disabled]="!registerFormGroup.valid">
-        დადასტურება
+        Register
       </button>
     </form>
   </mat-card>

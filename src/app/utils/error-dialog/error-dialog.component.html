@@ -1,8 +1,8 @@
 <div class="error-dialog">
-  <div mat-dialog-title>დაფიქსირდა ხარვეზი!</div>
+  <div mat-dialog-title>Operation failed</div>
   <div mat-dialog-content>
     <p *ngIf="data.status">
-      <b>სტატუსის კოდი: {{ data.status }}</b>
+      <b>Status code: {{ data.status }}</b>
     </p>
     <p class="error-message">
       {{ data?.message }}
@@ -10,7 +10,7 @@
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button mat-dialog-close color="primary">
-      დახურვა
+      Close
     </button>
   </div>
 </div>

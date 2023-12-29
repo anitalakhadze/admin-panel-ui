@@ -6,21 +6,21 @@ h1 {
   justify-content: center;
   text-align: center;
   font-family: my_font, serif;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .mat-header-cell {
   text-align: center;
   font-family: my_font, serif;
   font-size: larger;
-  font-weight: bolder;
+  font-weight: bold;
   padding: 30px;
 }
 
 .mat-cell {
   font-family: my_font, serif;
   font-size: larger;
-  font-weight: bolder;
+  font-weight: bold;
   padding: 30px;
 }
 

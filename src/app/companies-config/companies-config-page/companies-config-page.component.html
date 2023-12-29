@@ -1,12 +1,12 @@
 <div class="mat-elevation-z8">
   <div class="flex-center">
-    <h1>არააქტიური კომპანიები</h1>
+    <h1>Inactive Companies</h1>
   </div>
 
   <div class="filter-field">
     <mat-form-field>
       <input matInput (keyup)="applyFilterToInactiveCompanies($event)"
-             placeholder="ფილტრი" #input maxlength="30" autocomplete="off">
+             placeholder="filter" #input maxlength="30" autocomplete="off">
       <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
     </mat-form-field>
   </div>
@@ -15,12 +15,12 @@
     <table mat-table [dataSource]="inactiveCompaniesDataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="company">
-        <th mat-header-cell *matHeaderCellDef>კომპანიის სახელი</th>
+        <th mat-header-cell *matHeaderCellDef>Company Name</th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="check">
-        <th mat-header-cell *matHeaderCellDef>მონიშნე</th>
+        <th mat-header-cell *matHeaderCellDef>Select</th>
         <td mat-cell *matCellDef="let element">
           <mat-checkbox color="primary" (change)="checkCompanyToSave(element.id)" [checked]="isChecked(element.id)">
           </mat-checkbox>
@@ -31,7 +31,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedCompaniesColumns;"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">არააქტიური კომპანია დასახელებით "{{input.value}}" არ მოიძებნა</td>
+        <td class="mat-cell" colspan="4">Inactive company with name "{{input.value}}" was not found.</td>
       </tr>
     </table>
 
@@ -41,6 +41,6 @@
   <button mat-raised-button color="primary" class="save-companies-button"
           (click)="saveCompanies()" [loading]="saveButtonLoading"
           [disabled]="companiesToSaveArray.length <= 0">
-    გააქტიურება
+    Activate
   </button>
 </div>

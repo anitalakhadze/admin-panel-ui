@@ -64,9 +64,9 @@ export class TransactionsFilterComponent implements OnInit, OnDestroy {
         data => {
           this.companiesArray = data;
           this.filteredCompanies.next(data);
-          this.snackBarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით')
+          this.snackBarService.openSnackBar('Data loaded successfully')
         }, () => {
-          this.snackBarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატების უგარეშოდ')
+          this.snackBarService.openSnackBar('Error loading data')
         }
       )
   }
