@@ -53,9 +53,9 @@ export class UsersComponent implements OnInit, AfterViewInit {
           this.usersDataSource = new MatTableDataSource<User>(data);
           this.usersDataSource.paginator = this.usersPaginator;
           this.usersDataSource.sort = this.matSort;
-          this.snackBarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატებით')
+          this.snackBarService.openSnackBar('Data loaded successfully')
         }, () => {
-          this.snackBarService.openSnackBar('მონაცემების ჩატვირთვა დასრულდა წარმატების უგარეშოდ')
+          this.snackBarService.openSnackBar('Error loading data')
         }
       )
   }
@@ -88,10 +88,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
         (data) => {
           saveAs(data, 'კომპანიები.csv');
           this.exportButtonLoading = false;
-          this.snackBarService.openSnackBar("ექსპორტი განხორციელდა წარმატებით");
+          this.snackBarService.openSnackBar("Data exported successfully!");
         }, () => {
           this.exportButtonLoading = false;
-          this.snackBarService.openSnackBar("ექსპორტი განხორციელდა წარმატების უგარეშოდ");
+          this.snackBarService.openSnackBar("Data export failed.");
         }
       )
   }

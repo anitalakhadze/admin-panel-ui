@@ -1,8 +1,9 @@
 @import '../node_modules/@syncfusion/ej2-angular-popups/styles/bootstrap-dark.css';
 
 @font-face {
-  font-family: 'my_font'; /*a name to be used later*/
-  src: url('fonts/bpg_nino_mtavruli_normal.ttf'); /*URL to font*/
+  /*font-family: 'my_font'; !*a name to be used later*!*/
+  /*src: url('fonts/bpg_nino_mtavruli_normal.ttf'); !*URL to font*!*/
+  font-family: 'Roboto Light'; /*a name to be used later*/
 }
 
 html,
@@ -35,7 +36,7 @@ body {
   text-decoration: none;
   color: #ffffff;
   font-family: my_font, serif;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: larger;
 }
 
@@ -104,7 +105,7 @@ body {
 .main-wrapper mat-card-header mat-card-title {
   margin: 0;
   font-family: my_font, serif;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: x-large;
 }
 

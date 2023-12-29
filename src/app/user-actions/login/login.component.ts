@@ -80,10 +80,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
             this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
               console.log("User has successfully logged in!")
             })
-            this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატებით')
+            this.snackbarService.openSnackBar('User logged in successfully!')
           }, () => {
             this.loginFormGroup.reset();
-            this.snackbarService.openSnackBar('აპლიკაციაში შესვლა განხორციელდა წარმატების უგარეშოდ')
+            this.snackbarService.openSnackBar('Invalid credentials!')
           }
         );
     }

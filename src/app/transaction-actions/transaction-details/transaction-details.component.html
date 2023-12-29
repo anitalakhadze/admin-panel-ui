@@ -1,16 +1,16 @@
 <div>
-  <h2 mat-dialog-title style="text-align: center">ტრანზაქციის დეტალები</h2>
+  <h2 mat-dialog-title style="text-align: center">Transaction Details</h2>
   <mat-dialog-content>
-    <div>მომხმარებლის ID : {{transactionData.userId}}</div>
-    <div>გადახდის მეთოდი : {{transactionData.paymentSource}}</div>
-    <div>ტრანზაქციის სტატუსი : {{transactionData.status}}</div>
-    <div>eCommerce კომპანია : {{transactionData.ecommerceCompanyName}}</div>
+    <div>User ID : {{transactionData.userId}}</div>
+    <div>Payment method : {{transactionData.paymentSource}}</div>
+    <div>Transaction status : {{transactionData.status}}</div>
+    <div>eCommerce company : {{transactionData.ecommerceCompanyName}}</div>
   </mat-dialog-content>
 
 
   <mat-dialog-actions class="float-right">
     <button class="mat-raised-button"
             style="margin-right: auto; margin-left: auto; display: block;"
-            (click)="closeDialog()">დახურვა</button>
+            (click)="closeDialog()">Close</button>
   </mat-dialog-actions>
 </div>

@@ -74,13 +74,13 @@ export class UserDetailsComponent implements OnInit, AfterViewInit {
           this.submitButtonLoading = false;
           this.saveRequestSubmitted = true;
           this.updateUserFormGroup.disable();
-          this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატებით');
+          this.snackbarService.openSnackBar('Data has been successfully updated!');
         }, error => {
           console.log(error);
           this.saveRequestSubmitted = false;
           this.submitButtonLoading = false;
           hideSpinner(<HTMLElement>document.getElementById("submit-button"))
-          this.snackbarService.openSnackBar('მონაცემები განახლდა წარმატების უგარეშოდ')
+          this.snackbarService.openSnackBar('Data update failed.')
         })
     }
   }

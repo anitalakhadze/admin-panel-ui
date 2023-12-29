@@ -1,7 +1,7 @@
 <div class="mat-elevation-z8" style="margin-top: 5%;">
   <div class="wrapper">
     <div class="flex-center">
-      <h1>ფილტრი</h1>
+      <h1>Filter</h1>
     </div>
 
     <div *ngIf="this.authService.hasRole('ROLE_ADMIN')">
@@ -12,10 +12,10 @@
       <form [formGroup]="range" class="example-form">
         <div class="flex-center">
           <mat-form-field class="date-config" style="width: 20%; margin-left: 40%;">
-            <mat-label>შეიყვანეთ დროის შუალედი</mat-label>
+            <mat-label>Select date range</mat-label>
             <mat-date-range-input [rangePicker]="picker" [max]="maxDate">
-              <input formControlName="startDate" matStartDate placeholder="საწყისი თარიღი">
-              <input formControlName="endDate" matEndDate placeholder="საბოლოო თარიღი">
+              <input formControlName="startDate" matStartDate placeholder="Start date">
+              <input formControlName="endDate" matEndDate placeholder="End date">
             </mat-date-range-input>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
@@ -28,7 +28,7 @@
               (click)="searchTransactions()"
               [loading]="searchButtonLoading"
               [disabled]="!range.valid">
-        ძებნა
+        Search
       </button>
     </div>
   </div>
@@ -38,13 +38,13 @@
 <!--<app-transactions></app-transactions>-->
 <div class="mat-elevation-z8" *ngIf="this.transactionsDataSource.data.length > 0">
   <div class="flex-center">
-    <h1>ტრანზაქციები</h1>
+    <h1>Transactions</h1>
   </div>
 
   <div class="filter-field">
     <mat-form-field >
       <input (keyup)="applyFilter($event)" matInput
-             maxlength="15" #input placeholder="ფილტრი">
+             maxlength="15" #input placeholder="filter">
       <mat-hint align="end">{{input.value?.length || 0}}/15</mat-hint>
     </mat-form-field>
   </div>
@@ -53,32 +53,32 @@
     <table mat-table class="mat-elevation-z8" [dataSource]="transactionsDataSource" matSort matSortStart="desc">
 
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ტრანზაქციის ID</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Transaction ID</th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>თანხა</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
         <td mat-cell *matCellDef="let element"> {{element.amount}}</td>
       </ng-container>
 
       <ng-container matColumnDef="commission">
-        <th mat-header-cell *matHeaderCellDef>საკომისიო</th>
+        <th mat-header-cell *matHeaderCellDef>Commission</th>
         <td mat-cell *matCellDef="let element"> {{element.commission}} </td>
       </ng-container>
 
       <ng-container matColumnDef="invoiceData">
-        <th mat-header-cell *matHeaderCellDef>ინვოისის მონაცემები</th>
+        <th mat-header-cell *matHeaderCellDef>Invoice Data</th>
         <td mat-cell *matCellDef="let element"> {{(element.invoiceData)}}</td>
       </ng-container>
 
       <ng-container matColumnDef="dateCreated">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>თარიღი</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
         <td mat-cell *matCellDef="let element"> {{(element.dateCreated | date:'dd-MM-yyyy')}}</td>
       </ng-container>
 
       <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef>დეტალები</th>
+        <th mat-header-cell *matHeaderCellDef>Details</th>
         <td mat-cell *matCellDef="let element">
           <button mat-raised-button color="primary" (click)="showDetails(element.details)">
             <!--                  [loading]="buttonLoading">-->
@@ -91,7 +91,7 @@
       </ng-container>
 
       <ng-container matColumnDef="cancel">
-        <th mat-header-cell *matHeaderCellDef>გაუქმება</th>
+        <th mat-header-cell *matHeaderCellDef>Cancel</th>
         <td mat-cell *matCellDef="let element">
           <button mat-raised-button color="warn" (click)="cancelTransaction(element.id)" [loading]="cancelButtonLoading">
               <span class="material-icons">
@@ -106,7 +106,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr mat-row *matNoDataRow>
-        <td mat-cell colspan="4">ჩანაწერი არ მოიძებნა</td>
+        <td mat-cell colspan="4">Records not found.</td>
       </tr>
     </table>
 
@@ -118,6 +118,6 @@
           (click)="downloadExcel()"
           [loading]="exportButtonLoading"
           [disabled]="exportButtonLoading">
-    ექსპორტი
+    Export
   </button>
 </div>

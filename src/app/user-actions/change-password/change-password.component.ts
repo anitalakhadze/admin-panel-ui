@@ -77,10 +77,10 @@ export class ChangePasswordComponent implements OnInit {
                 this.router.navigate([DASHBOARD_ENDPOINT]).then(() => {
                   console.log("Password has been successfully changed!");
                 })
-                this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატებით');
+                this.snackbarService.openSnackBar('Password has been successfully changed!');
               }, () => {
                 this.passwordFormGroup.reset();
-                this.snackbarService.openSnackBar('პაროლის ცვლილება დასრულდა წარმატების უგარეშოდ')
+                this.snackbarService.openSnackBar('Password change failed.')
               }
             )
         }

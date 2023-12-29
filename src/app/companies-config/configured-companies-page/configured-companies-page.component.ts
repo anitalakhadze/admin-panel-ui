@@ -59,9 +59,9 @@ export class ConfiguredCompaniesPageComponent implements OnInit {
       }))
       .subscribe(
         () => {
-          this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატებით");
+          this.snackBarService.openSnackBar("Operation completed successfully!");
         }, () => {
-          this.snackBarService.openSnackBar("მონაცემების შენახვა დასრულდა წარმატების უგარეშოდ");
+          this.snackBarService.openSnackBar("Operation failed.");
         }
       )
   }

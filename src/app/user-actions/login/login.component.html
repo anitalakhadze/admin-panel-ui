@@ -1,30 +1,30 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>აპლიკაციაში შესვლა</mat-card-title>
+      <mat-card-title>Management Console</mat-card-title>
     </mat-card-header>
 
     <form class="example-form" [formGroup]="loginFormGroup">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="მომხმარებლის სახელი" formControlName="username">
+          <input matInput placeholder="Username" formControlName="username">
           <div class="text-danger" *ngIf="loginFormGroup.get('username')?.errors?.minlength">
-            <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 2</small>
+            <small style="color:rgba(255,0,0,0.6);">Username should consist of min 2 characters.</small>
           </div>
           <div class="text-danger" *ngIf="loginFormGroup.get('username')?.errors?.maxlength">
-            <small style="color:rgba(255,0,0,0.6);">თქვენ გადააჭარბეთ სიმბოლოების მაქსიმალურ რაოდენობას</small>
+            <small style="color:rgba(255,0,0,0.6);">Username exceeds max allowed characters.</small>
           </div>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="პაროლი" formControlName="password"
+          <input matInput placeholder="password" formControlName="password"
                  [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <div class="text-danger" *ngIf="loginFormGroup.get('password')?.errors?.pattern">
-            <small style="color:rgba(255,0,0,0.6);">დაშვებულია მხოლოდ ლათინური ასოები, ციფრები და სიმბოლოები</small>
+            <small style="color:rgba(255,0,0,0.6);">Only digits, symbols and Latin characters are allowed</small>
           </div>
           <div class="text-danger" *ngIf="loginFormGroup.get('password')?.errors?.minlength">
-            <small style="color:rgba(255,0,0,0.6);">სიმბოლოების მინიმალური რაოდენობაა 8</small>
+            <small style="color:rgba(255,0,0,0.6);">Password should consist of min 8 characters.</small>
           </div>
         </mat-form-field>
       </mat-card-content>
@@ -32,7 +32,7 @@
       <button mat-stroked-button class="btn-block"
               (click)="submitCredentials()"
               [disabled]="!loginFormGroup.valid" id="login-button">
-        დადასტურება
+        Log in
       </button>
     </form>
   </mat-card>
