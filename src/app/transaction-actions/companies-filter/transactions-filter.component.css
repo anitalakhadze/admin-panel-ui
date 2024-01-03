@@ -5,7 +5,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-weight: bold;
 }
 
@@ -17,5 +17,5 @@ h1 {
 }
 
 .mat-raised-button {
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
 }

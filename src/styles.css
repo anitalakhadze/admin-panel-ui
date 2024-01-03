@@ -3,7 +3,7 @@
 @font-face {
   /*font-family: 'my_font'; !*a name to be used later*!*/
   /*src: url('fonts/bpg_nino_mtavruli_normal.ttf'); !*URL to font*!*/
-  font-family: 'Roboto Light'; /*a name to be used later*/
+  font-family: 'Helvetica Light'; /*a name to be used later*/
 }
 
 html,
@@ -15,7 +15,7 @@ body {
 
 body {
   background-color: #e5e5e5;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
 }
 
 .app-header {
@@ -35,7 +35,7 @@ body {
 .positronx {
   text-decoration: none;
   color: #ffffff;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-weight: bold;
   font-size: larger;
 }
@@ -89,7 +89,7 @@ body {
 .main-wrapper .example-full-width,
 .main-wrapper .btn-block {
   width: 100%;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-weight: bold;
   font-size: medium;
 }
@@ -104,7 +104,7 @@ body {
 
 .main-wrapper mat-card-header mat-card-title {
   margin: 0;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-weight: bold;
   font-size: x-large;
 }
