@@ -5,20 +5,20 @@ h1 {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-weight: bold;
 }
 
 .mat-header-cell {
   text-align: center;
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-size: larger;
   font-weight: bold;
   padding: 30px;
 }
 
 .mat-cell {
-  font-family: my_font, serif;
+  font-family: Helvetica, serif;
   font-size: larger;
   font-weight: bold;
   padding: 30px;
